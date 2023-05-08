@@ -1,0 +1,57 @@
+<?php
+
+return [
+    'admin.activity' => [
+        'index' => 'admin::permissions.activity.index',
+    ],
+    'admin.sra' => [
+        'index' => 'admin::permissions.sra.index',
+        'election' => 'admin::permissions.sra.election',
+        'electricity' => 'admin::permissions.sra.electricity',
+        'manualdata' => 'admin::permissions.sra.manualdata',
+        'storeManualData' => 'admin::permissions.sra.storeManualData',
+        'manualdataelection' => 'admin::permissions.sra.manualdataelection',
+         'manualdataelection_missing' => 'admin::permissions.sra.manualdataelection_missing',
+        'storeManualDataelection' => 'admin::permissions.sra.storeManualDataelection',
+        'manualdata_pdf' => 'admin::permissions.sra.manualdata_pdf',
+        'storeManualData_pdf' => 'admin::permissions.sra.storeManualData_pdf',
+        'vendormanagerindex' => 'admin::permissions.sra.vendormanagerindex',
+        'documentlisting' => 'admin::permissions.sra.documentlisting',
+        'uplodemissingdocument' => 'admin::permissions.sra.uplodemissingdocument',
+        'storemissingdocument' => 'admin::permissions.sra.storemissingdocument',
+        'missing_document' => 'admin::permissions.sra.missing_document',
+        'ca_remark' => 'admin::permissions.sra.ca_remark',
+        'vendor_remark' => 'admin::permissions.sra.vendor_remark',
+        'storeremark_election' => 'admin::permissions.sra.storeremark_election',
+        'gumasta'=>'admin::permissions.sra.gumasta',
+        'storeremark' => 'SRA Store Remarks',
+        'store_overall_remark' => 'SRA Store Overall Remarks',
+        'sra_chk' => 'SRA Integration Checkbox',
+        'agreement'=>'admin::permissions.sra.agreement',
+        'storeremark_agreement' => 'admin::permissions.sra.storeremark_agreement',
+        'storeremark_photopass' => 'admin::permissions.sra.storeremark_photopass',
+        'storeremark_gumasta' => 'admin::permissions.sra.storeremark_gumasta',
+        'storemanualdata_agreement'=>'admin::permissions.sra.storemanualdata_agreement',
+        'store_integration_gumasta'=>'admin::permissions.sra.store_integration_gumasta',
+        'final_submit'=>'admin::permissions.sra.final_submit',
+        'final_ca_submit'=>'admin::permissions.sra.final_ca_submit',
+        'report'=>'admin.sra.report',
+        'viewreport'=>'admin.sra.viewreport',
+        'adhar'=>'admin.sra.adhar',
+        'storeremark_adhar' => 'admin::permissions.sra.storeremark_adhar',
+        'storemanualdata_adhar' => 'admin::permissions.sra.storemanualdata_adhar',
+        'work_status' => 'admin::permissions.sra.work_status',
+
+
+    ],
+    'admin.missingelectiondocuments' => [
+        'index' => 'admin::permissions.missingelectiondocuments.index',
+        'manualdata' => 'admin::permissions.missingelectiondocuments.manualdata',
+        'storeManualData' => 'admin::permissions.missingelectiondocuments.storeManualData',
+    ],
+    'admin.missingelectricitydocuments' => [
+        'index' => 'admin::permissions.missingelectricitydocuments.index',
+        'manualdata' => 'admin::permissions.missingelectricitydocuments.manualdata',
+        'storeManualData' => 'admin::permissions.missingelectricitydocuments.storeManualData',
+    ],
+];

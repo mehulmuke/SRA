@@ -1,0 +1,10 @@
+{
+    "Admin": true,
+    "Base": true,
+    "Folder": true,
+    "Files": true,
+    "Media": true,
+    "Setting": true,
+    "Translation": true,
+    "User": true
+}

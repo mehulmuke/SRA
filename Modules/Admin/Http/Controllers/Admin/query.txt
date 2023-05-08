@@ -1,0 +1,174 @@
+//adhar end
+        $year = 0;
+     foreach($query as $data)
+    {
+         /*$merge_query = DB::table('adhar_document')
+                       ->select('hut_id', DB::raw("CONCAT('Aadhar Document ', ' with UID ', uid, ', and address ', address) AS remark"))
+                       -> where('hut_id',$data->HUTSURVERYID)
+                       ->first();*/
+       /* $merge_query = DB::table('election_document')
+                       ->select('hut_id','year', DB::raw("CONCAT('election_document ',(CASE YEAR WHEN 2023 THEN 'Current Year' WHEN 2000 THEN 'Year 2000 or before' WHEN 2011 THEN 'Between 2000 and 2011' END),' with voter_id ', voter_id,', and address ', address) AS remark"))
+                       -> where('hut_id',$data->HUTSURVERYID)
+                       ->first();*/
+         /* $merge_query = DB::table('electricity_document')
+                       ->select('hut_id','year', DB::raw("CONCAT('electricity_document ',(CASE YEAR WHEN 2023 THEN 'Current Year' WHEN 2000 THEN 'Year 2000 or before' WHEN 2011 THEN 'Between 2000 and 2011' END),' with CA Number ',ca_number,', Bill dated ',bill_date,', with address ',
+        elector_address,', having category ', category) AS remark"))
+                       -> where('hut_id',$data->HUTSURVERYID)
+                       ->first();*/
+           /* $merge_query = DB::table('gumasta_document')
+                       ->select('hut_id','year', DB::raw("CONCAT('gumasta_document ',(CASE YEAR WHEN 2023 THEN 'Current Year' WHEN 2000 THEN 'Year 2000 or before' WHEN 2011 THEN 'Between 2000 and 2011' END),' with License Number ',license_number,', Issue dated ',license_issue_date,
+               ', Organization Name ',organization_name,', with address ', address,', Owner Name ',owner_name) AS remark"))
+                       -> where('hut_id',$data->HUTSURVERYID)
+                       ->first();*/
+             $merge_query = DB::table('photopass_document')
+                       ->select('hut_id','year', DB::raw("CONCAT('photopass','with Survey Receipt No', survey_receipt_no,' With Name',name_as_per_survey_receipt) AS remark"))
+                       -> where('hut_id',$data->HUTSURVERYID)
+                       ->first();
+
+                      // print_r($merge_query);
+                       //die;
+         if(isset($merge_query->hut_id)){
+             $chk_data = DB::table('sims_master_detail')->where('hut_id',$data->HUTSURVERYID)->get();
+                if(count($chk_data) == 0){
+                 DB::table('sims_master_detail')->insert([
+                                'hut_id'=>$data->HUTSURVERYID,
+                                'user_id'=>auth()->user()->id,
+                                'photopass_status'=>1,
+                                'photopass_remark'=>isset($merge_query->remark)?$merge_query->remark:'',
+                                'created_at'=>NOW(),
+                                
+                        ]);        
+                }else{
+                     DB::table('sims_master_detail')
+                    ->where('hut_id',$data->HUTSURVERYID)
+                    ->update(['photopass_status' => '1','photopass_remark'=>isset($merge_query->remark)?$merge_query->remark:'','updated_at'=>NOW()]);
+                }
+
+                $chk_data1 = DB::table('sims_master')->where('hut_id',$data->HUTSURVERYID)->get();
+                if(count($chk_data1) == 0){
+                 DB::table('sims_master')->insert([
+                                'hut_id'=>$data->HUTSURVERYID,
+                                'created_at'=>NOW(),
+                                
+                        ]);        
+                }
+
+                //adaar start
+               
+               /* $chk_data2 = DB::table('recommendation_adhar')->where('hut_id',$data->HUTSURVERYID)->where( 'user_id',auth()->user()->id)->where('user','ca')->get();
+                if(count($chk_data2) == 0){
+                 DB::table('recommendation_adhar')->insert([
+                                'hut_id'=>$data->HUTSURVERYID,
+                                'year'=>1,
+                                'user_id'=>auth()->user()->id,
+                                'overall_remark'=>isset($merge_query->remark)?$merge_query->remark:'',
+                                'overall_eligibility'=>1,
+                                'user'=>'ca',
+                                'created_at'=>NOW(),
+                                
+                        ]);        
+                }*/
+                 //adhar end
+                //election start
+
+                /*if($merge_query->year == "Current Year"){
+                    $year = 3;
+                }
+                if($merge_query->year == "Year 2000 or before"){
+                    $year = 1;
+                }
+                if($merge_query->year == "Between 2000 and 2011"){
+                    $year = 2;
+                }
+                 $chk_data2 = DB::table('recommendation_election')->where('hut_id',$data->HUTSURVERYID)->where( 'user_id',auth()->user()->id)->where('user','ca')->get();
+
+                if(count($chk_data2) == 0){
+                 DB::table('recommendation_election')->insert([
+                                'hut_id'=>$data->HUTSURVERYID,
+                                'year'=>$year,
+                                'user_id'=>auth()->user()->id,
+                                'overall_remark'=>isset($merge_query->remark)?$merge_query->remark:'',
+                                'overall_eligibility'=>1,
+                                'user'=>'ca',
+                                'created_at'=>NOW(),
+                                
+                        ]);        
+                }*/
+                //election end
+
+                //electricity start
+                /*if($merge_query->year == "Current Year"){
+                    $year = 3;
+                }
+                if($merge_query->year == "Year 2000 or before"){
+                    $year = 1;
+                }
+                if($merge_query->year == "Between 2000 and 2011"){
+                    $year = 2;
+                }
+                 $chk_data2 = DB::table('recommendation_electricity')->where('hut_id',$data->HUTSURVERYID)->where( 'user_id',auth()->user()->id)->where('user','ca')->get();
+
+                if(count($chk_data2) == 0){
+                 DB::table('recommendation_electricity')->insert([
+                                'hut_id'=>$data->HUTSURVERYID,
+                                'year'=>$year,
+                                'user_id'=>auth()->user()->id,
+                                'overall_remark'=>isset($merge_query->remark)?$merge_query->remark:'',
+                                'overall_eligibility'=>1,
+                                'user'=>'ca',
+                                'created_at'=>NOW(),
+                                
+                        ]);        
+                }*/
+                //electricity end
+
+                //gumasta start
+              /*  if($merge_query->year == "Current Year"){
+                    $year = 3;
+                }
+                if($merge_query->year == "Year 2000 or before"){
+                    $year = 1;
+                }
+                if($merge_query->year == "Between 2000 and 2011"){
+                    $year = 2;
+                }
+                 $chk_data2 = DB::table('recommendation_gumasta')->where('hut_id',$data->HUTSURVERYID)->where( 'user_id',auth()->user()->id)->where('user','ca')->get();
+
+                if(count($chk_data2) == 0){
+                 DB::table('recommendation_gumasta')->insert([
+                                'hut_id'=>$data->HUTSURVERYID,
+                                'year'=>$year,
+                                'user_id'=>auth()->user()->id,
+                                'overall_remark'=>isset($merge_query->remark)?$merge_query->remark:'',
+                                'overall_eligibility'=>1,
+                                'user'=>'ca',
+                                'created_at'=>NOW(),
+                                
+                        ]);        
+                }*/
+                //gumasta end
+
+                //photopass start
+               
+                
+                 /*$chk_data2 = DB::table('recommendation_photopass')->where('hut_id',$data->HUTSURVERYID)->where( 'user_id',auth()->user()->id)->where('user','ca')->get();
+
+                if(count($chk_data2) == 0){
+                 DB::table('recommendation_photopass')->insert([
+                                'hut_id'=>$data->HUTSURVERYID,
+                                'year'=>$year,
+                                'user_id'=>auth()->user()->id,
+                                'overall_remark'=>isset($merge_query->remark)?$merge_query->remark:'',
+                                'overall_eligibility'=>1,
+                                'user'=>'ca',
+                                'created_at'=>NOW(),
+                                
+                        ]);        
+                }*/
+              
+                //photopass end
+            }
+        
+            //die;
+           
+    }

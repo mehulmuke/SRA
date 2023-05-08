@@ -1,0 +1,32 @@
+[2023-04-29 11:40:06] production.ERROR: Maximum execution time of 300 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 300 seconds exceeded at /var/www/sraservices/vendor/symfony/polyfill-mbstring/Mbstring.php:636)
+[stacktrace]
+#0 {main}
+"} 
+[2023-04-29 11:42:03] production.ERROR: Maximum execution time of 300 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 300 seconds exceeded at /var/www/sraservices/vendor/symfony/polyfill-mbstring/Mbstring.php:636)
+[stacktrace]
+#0 {main}
+"} 
+[2023-04-29 11:52:16] production.ERROR: Maximum execution time of 300 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 300 seconds exceeded at /var/www/sraservices/vendor/symfony/polyfill-mbstring/Mbstring.php:636)
+[stacktrace]
+#0 {main}
+"} 
+[2023-04-29 11:52:39] production.ERROR: Maximum execution time of 300 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 300 seconds exceeded at /var/www/sraservices/vendor/symfony/polyfill-mbstring/Mbstring.php:636)
+[stacktrace]
+#0 {main}
+"} 
+[2023-04-29 11:53:05] production.ERROR: Maximum execution time of 300 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 300 seconds exceeded at /var/www/sraservices/vendor/symfony/polyfill-mbstring/Mbstring.php:636)
+[stacktrace]
+#0 {main}
+"} 
+[2023-04-29 11:53:26] production.ERROR: Maximum execution time of 300 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 300 seconds exceeded at /var/www/sraservices/vendor/symfony/polyfill-mbstring/Mbstring.php:636)
+[stacktrace]
+#0 {main}
+"} 
+[2023-04-29 11:53:42] production.ERROR: Maximum execution time of 300 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 300 seconds exceeded at /var/www/sraservices/vendor/symfony/polyfill-mbstring/Mbstring.php:636)
+[stacktrace]
+#0 {main}
+"} 
+[2023-04-29 11:53:45] production.ERROR: Maximum execution time of 300 seconds exceeded {"userId":2,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 300 seconds exceeded at /var/www/sraservices/vendor/symfony/polyfill-mbstring/Mbstring.php:636)
+[stacktrace]
+#0 {main}
+"} 
