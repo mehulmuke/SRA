@@ -1,0 +1,31 @@
+{
+    "name": "nikhiltester/stylist",
+    "description": "Laravel theming package.",
+    "authors": [
+        {
+            "name": "Nikhiltester",
+            "email": "nikhiltester123@gmail.com"
+        }
+    ],
+    "require": {
+        "laravelcollective/html": "^6.0|^7.0|^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nikhiltester\\Stylist\\": "src/Stylist"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nikhiltester\\Stylist\\StylistServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "config": {
+        "preferred-install": "dist"
+    },
+    "license": "MIT"
+ 
+}
