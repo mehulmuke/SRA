@@ -71,9 +71,10 @@
                 {{ csrf_field() }}
                 
                 <div class="form-group {{ $errors->has('email') ? 'has-error': '' }}">
-                    <label for="email">{{ clean(trans('user::auth.email')) }} <span class="required-label">*</span></label>
-
-                    <input type="text" name="email" value="{{ old('email') }}" class="form-control" id="email" placeholder="{{ clean(trans('user::attributes.users.email')) }}" autofocus>
+                    <!-- <label for="email">{{ clean(trans('user::auth.email')) }} <span class="required-label">*</span></label> -->
+                    <label for="email">{{ clean(trans('user::auth.username')) }} <span class="required-label">*</span></label>
+                    
+                    <input type="text" name="email" value="{{ old('email') }}" class="form-control" id="email" placeholder="{{ clean(trans('user::attributes.users.username')) }}" autofocus>
                     @if($errors->has('email'))
                         <span class="help-block">{{ clean($errors->first('email')) }}</span>
                     @endif

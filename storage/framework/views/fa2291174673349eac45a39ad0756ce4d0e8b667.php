@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+
+
 <?php $__env->startComponent('admin::include.page.header'); ?>
     <?php $__env->slot('title', clean(trans('admin::sra.sradetailtitle'))); ?>
     <li class="nav-item">
@@ -89,7 +96,7 @@
     td {
         border-bottom: none !important;
         height: 30px !important;
-        font-size:16px !important;
+        font-size:18px !important;
     }
     h4{
       font-size:18px !important;
@@ -142,7 +149,7 @@
                         </div>
                         <div class="tab">
                             <input type="radio" name="css-tabs" id="tab-5" class="tab-switch">
-                            <a href="#" class="tab-label" style="color:#495057!important; font-size:18px !important;
+                            <a href="index.php/sra/photopass/<?php echo e($hid); ?>" class="tab-label" style="color:#495057!important; font-size:18px !important;
                             ">Photo Pass Details</a>
                             <div class="tab-content">Photo Pass Details</div>
                         </div>
@@ -155,7 +162,7 @@
                         </div>
                         <div class="tab">
                 <input type="radio" name="css-tabs" id="tab-8" class="tab-switch">
-                <a href="index.php/sra/adhar/<?php echo e($hid); ?>" class="tab-label" style="color:#495057!important;font-size:16px !important;">Aadhar Card</a>
+                <a href="index.php/sra/adhar/<?php echo e($hid); ?>" class="tab-label" style="color:#495057!important;font-size:16px !important;">Aadhaar Card</a>
                 <div class="tab-content">Registration Agreement Details</div>
               </div>
                         <div class="tab">
@@ -168,8 +175,9 @@
                                     <table class="table table-borderless table-responsive">
                                       <thead>
                                           <tr>
+                                        <th>Cluster ID</th>
                                           <th>Hut ID</th>
-                                          <th>Cluster ID</th>
+                                        
                                           <th>Scheme Name</th>
                                           <th>Owner Name</th>
                                           <th>Address</th>
@@ -184,9 +192,10 @@
                                       <tbody>
                                         <tr>
                                           <?php $__currentLoopData = $query; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                          <td><?php echo e($data->ClusterId); ?></td>
                                             <td><?php echo e($data->HUTSURVERYID); ?></td>
                                             <?php $hid = $data->HUTSURVERYID ?>
-                                            <td><?php echo e($data->ClusterId); ?></td>
+                                            
                                             <td><?php echo e($data->SchemeName); ?></td>
                                             <td><?php echo e($data->HUTOWNERNAME); ?></td>
                                             <td><?php echo e($data->Address); ?></td>
@@ -709,7 +718,7 @@
 
                                                         </tr>
                                                         <tr>
-                                                            <td style="width:90px;"><b>Aadhar </b>
+                                                            <td style="width:90px;"><b>Aadhaar </b>
                                                                
                                                             </td>
                                                            <td style="width:1px;">:</td>
@@ -749,7 +758,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <?php if ($currentUser->hasAccess('admin.sra.ca_remark')) : ?>
-                                            <form method="POST" action="<?php echo e(route('admin.sra.final_ca_submit')); ?>">
+                                            <form method="POST" action="<?php echo e(route('admin.sra.final_ca_submit')); ?>" >
                                                  <?php echo csrf_field(); ?>
                                                 <input type="hidden" id="hut_id" name="hut_id" value="<?= $hid ?>"
                                                     required>
@@ -819,7 +828,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Overall Recommendation:</label>
-                                                    <select class='form-control' name="status" style="width:30%;">
+                                                    <select class='form-control' name="status" style="width:30%;" required>
 
                                                         <?php if($status == 0){ ?>
                                                         <option value="0" selected="">-- Select Status --</option>
@@ -852,7 +861,7 @@
                                                 <div class="form-group">
                                                     <label>Final Remark:</label>
                                                     <?php if($remark == ""){ ?>
-                                                    <textarea class='form-control' name='remark' id='remark'><?php echo e($final_remark); ?></textarea>
+                                                    <textarea class='form-control' name='remark' id='remark' required><?php echo e($final_remark); ?></textarea>
                                                     <?php } else{ ?>
                                                     <textarea class='form-control' name='remark' id='remark'><?php echo e($remark); ?></textarea>
                                                     <?php } ?>
@@ -872,7 +881,7 @@
                                             <?php endif; ?>
 
                                             <?php if ($currentUser->hasAccess('admin.sra.vendor_remark')) : ?>
-                                            <form method="POST" action="<?php echo e(route('admin.sra.final_submit')); ?>">
+                                            <form method="POST" action="<?php echo e(route('admin.sra.final_submit')); ?>" >
                                                  <?php echo csrf_field(); ?>
                                                 <input type="hidden" id="hut_id" name="hut_id" value="<?= $hid ?>"
                                                     required>
@@ -894,7 +903,7 @@
 
                                                 <div class="form-group">
                                                     <label>Overall Recommendation::</label>
-                                                    <select class='form-control' name="status" style="width:30%;">
+                                                    <select class='form-control' name="status" style="width:30%;" required>
 
                                                         <?php if($status == 0){ ?>
                                                         <option value="0" selected="">-- Select Status --</option>
@@ -927,7 +936,7 @@
                                                 <div class="form-group">
                                                     <label>Final Remark:</label>
                                                     <?php if($remark == ""){ ?>
-                                                    <textarea class='form-control' name='remark' id='remark'></textarea>
+                                                    <textarea class='form-control' name='remark' id='remark' required></textarea>
                                                     <?php } else{ ?>
                                                     <textarea class='form-control' name='remark' id='remark'><?php echo e($remark); ?></textarea>
                                                     <?php } ?>
@@ -982,5 +991,19 @@
         background: white !important;
     }
 </style>
+<script>
+    $(document).ready(function() {
+        // Hide success message after 5 seconds
+        setTimeout(function() {
+            $('.alert-success').fadeOut('slow');
+        }, 5000);
+    });
+</script>
+
+
+
+
+
+
 
 <?php echo $__env->make('admin::layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/sraservices/Modules/Admin/Resources/views/sra/final.blade.php ENDPATH**/ ?>

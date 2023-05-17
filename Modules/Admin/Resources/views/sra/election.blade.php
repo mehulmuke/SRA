@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
 @extends('admin::layout')
 
 @component('admin::include.page.header')
@@ -153,7 +158,7 @@
 th,td {
         border-bottom: none !important;
         height: 30px !important;
-        font-size:16px !important;
+        font-size:18px !important;
     }
     h4{
       font-size:18px !important;
@@ -280,8 +285,9 @@ th,td {
                                 <table class="table table-borderless table-responsive">
                                   <thead>
                                           <tr>
-                                      <th>Hut ID</th>
-                                      <th>Cluster ID</th>
+                                      <th>Cluster Id</th>
+                                      <th>Hut Id</th>
+                                      
                                       <th>Scheme Name</th>
                                       <th>Owner Name</th>
                                       <th>Address</th>
@@ -295,9 +301,10 @@ th,td {
                                   <tbody>
                                     <tr>
                                       @foreach($query as $data)
+                                      <td>{{$data->ClusterId}}</td>
                                         <td>{{$data->HUTSURVERYID}}</td>
                                         <?php $hid = $data->HUTSURVERYID ?>
-                                        <td>{{$data->ClusterId}}</td>
+                                       
                                         <td>{{$data->SchemeName}}</td>                                        
                                         <td>{{$data->HUTOWNERNAME}}</td>
                                         <td>{{$data->Address}}</td>
@@ -1175,49 +1182,49 @@ th,td {
                                     @if(isset($data_2000->remark_name))
                                         {{ $data_2000->remark_name }}
                                     @else
-                                        <input type="text" class="form-control" name="remark1" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark1" value="" <?= $access ?>>
                                     @endif
                                 </td>
                                 <td width="20%">
                                     @if(isset($data_2000->remark_address))
                                         {{ $data_2000->remark_address }}
                                     @else
-                                        <input type="text" class="form-control" name="remark2" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark2" value="" <?= $access ?>>
                                     @endif
                                 </td>
                                 <td width="10%">
                                     @if(isset($data_2000->remark_number))
                                         {{ $data_2000->remark_number }}
                                     @else
-                                        <input type="text" class="form-control" name="remark3" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark3" value="" <?= $access ?>>
                                     @endif
                                 </td>
                                 <td width="10%">
                                     @if(isset($data_2000->remark_type))
                                         {{ $data_2000->remark_type }}
                                     @else
-                                        <input type="text" class="form-control" name="remark4" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark4" value="" <?= $access ?>>
                                     @endif
                                 </td>
                                 <td width="10%">
                                     @if(isset($data_2000->remark_const_no))
                                         {{ $data_2000->remark_const_no }}
                                     @else
-                                        <input type="text" class="form-control" name="remark5" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark5" value="" <?= $access ?>>
                                     @endif
                                 </td>
                                 <td width="10%">
                                     @if(isset($data_2000->remark_sr_no))
                                         {{ $data_2000->remark_sr_no }}
                                     @else
-                                        <input type="text" class="form-control" name="remark6" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark6" value="" <?= $access ?>>
                                     @endif
                                 </td>
                                 <td width="10%">
                                     @if(isset($data_2000->remark_part_no))
                                         {{ $data_2000->remark_part_no }}
                                     @else
-                                        <input type="text" class="form-control" name="remark7" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark7" value="" <?= $access ?>>
                                     @endif
                                 </td>
                             </tr>
@@ -1467,49 +1474,49 @@ th,td {
                                   @if(isset($data_2000_ca->remark_name))
                                       {{ $data_2000_ca->remark_name }}
                                   @else
-                                      <input type="text" class="form-control" name="remark1_ca" value="" >
+                                      <input type="text" required class="form-control" name="remark1_ca" value="" >
                                   @endif
                               </td>
                               <td width="20%">
                                   @if(isset($data_2000_ca->remark_address))
                                       {{ $data_2000_ca->remark_address }}
                                   @else
-                                      <input type="text" class="form-control" name="remark2_ca" value="" >
+                                      <input type="text" required class="form-control" name="remark2_ca" value="" >
                                   @endif
                               </td>
                               <td width="10%">
                                   @if(isset($data_2000_ca->remark_number))
                                       {{ $data_2000_ca->remark_number }}
                                   @else
-                                      <input type="text" class="form-control" name="remark3_ca" value="" >
+                                      <input type="text" required class="form-control" name="remark3_ca" value="" >
                                   @endif
                               </td>
                               <td width="10%">
                                   @if(isset($data_2000_ca->remark_type))
                                       {{ $data_2000_ca->remark_type }}
                                   @else
-                                      <input type="text" class="form-control" name="remark4_ca" value="" >
+                                      <input type="text" required class="form-control" name="remark4_ca" value="" >
                                   @endif
                               </td>
                               <td width="10%">
                                   @if(isset($data_2000_ca->remark_const_no))
                                       {{ $data_2000_ca->remark_const_no }}
                                   @else
-                                      <input type="text" class="form-control" name="remark5_ca" value="" >
+                                      <input type="text" required class="form-control" name="remark5_ca" value="" >
                                   @endif
                               </td>
                               <td width="10%">
                                   @if(isset($data_2000_ca->remark_sr_no))
                                       {{ $data_2000_ca->remark_sr_no }}
                                   @else
-                                      <input type="text" class="form-control" name="remark6_ca" value="" >
+                                      <input type="text" required class="form-control" name="remark6_ca" value="" >
                                   @endif
                               </td>
                               <td width="10%">
                                   @if(isset($data_2000_ca->remark_part_no))
                                       {{ $data_2000_ca->remark_part_no }}
                                   @else
-                                      <input type="text" class="form-control" name="remark7_ca" value="" >
+                                      <input type="text" required class="form-control" name="remark7_ca" value="" >
                                   @endif
                               </td>
                           </tr>
@@ -2401,49 +2408,49 @@ th,td {
                                     @if (isset($data_2000_2011->remark_name))
                                         <span>{{ $data_2000_2011->remark_name }}</span>
                                     @else
-                                        <input type="text" class="form-control" name="remark1" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark1" value="" <?= $access ?>>
                                     @endif
                                 </td>
                                 <td width="20%">
                                     @if (isset($data_2000_2011->remark_address))
                                         <span>{{ $data_2000_2011->remark_address }}</span>
                                     @else
-                                        <input type="text" class="form-control" name="remark2" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark2" value="" <?= $access ?>>
                                     @endif
                                 </td>
                                 <td width="10%">
                                     @if (isset($data_2000_2011->remark_number))
                                         <span>{{ $data_2000_2011->remark_number }}</span>
                                     @else
-                                        <input type="text" class="form-control" name="remark3" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark3" value="" <?= $access ?>>
                                     @endif
                                 </td>
                                 <td width="10%">
                                     @if (isset($data_2000_2011->remark_type))
                                         <span>{{ $data_2000_2011->remark_type }}</span>
                                     @else
-                                        <input type="text" class="form-control" name="remark4" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark4" value="" <?= $access ?>>
                                     @endif
                                 </td>
                                 <td width="10%">
                                     @if (isset($data_2000_2011->remark_const_no))
                                         <span>{{ $data_2000_2011->remark_const_no }}</span>
                                     @else
-                                        <input type="text" class="form-control" name="remark5" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark5" value="" <?= $access ?>>
                                     @endif
                                 </td>
                                 <td width="10%">
                                     @if (isset($data_2000_2011->remark_sr_no))
                                         <span>{{ $data_2000_2011->remark_sr_no }}</span>
                                     @else
-                                        <input type="text" class="form-control" name="remark6" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark6" value="" <?= $access ?>>
                                     @endif
                                 </td>
                                 <td width="10%">
                                     @if (isset($data_2000_2011->remark_part_no))
                                         <span>{{ $data_2000_2011->remark_part_no }}</span>
                                     @else
-                                        <input type="text" class="form-control" name="remark7" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark7" value="" <?= $access ?>>
                                     @endif
                                 </td>
                             </tr>
@@ -2475,7 +2482,7 @@ th,td {
                                     Unavailable
                                     @endif
                                 @else
-                                    <select name="elg" class="form-control" style="padding: 2px 1rem !important;">
+                                    <select name="elg" required class="form-control" style="padding: 2px 1rem !important;">
                                         <option value="0">-- Select Option --</option>
                                         <option value="1" {{ isset($data_2000_2011->overall_eligibility) && ($data_2000_2011->overall_eligibility == 1) ? 'selected' : '' }}>Verified</option>
                                         <option value="2" {{ isset($data_2000_2011->overall_eligibility) && ($data_2000_2011->overall_eligibility == 2) ? 'selected' : '' }}>Not Matched</option>
@@ -2698,49 +2705,49 @@ th,td {
                                 @if(isset($data_2000_2011_ca->remark_name))
                                     {{$data_2000_2011_ca->remark_name}}
                                 @else
-                                    <input type="text" class="form-control" name="remark1_ca" value="">
+                                    <input type="text" required class="form-control" name="remark1_ca" value="">
                                 @endif
                             </td>
                             <td width="20%">
                                 @if(isset($data_2000_2011_ca->remark_address))
                                     {{$data_2000_2011_ca->remark_address}}
                                 @else
-                                    <input type="text" class="form-control" name="remark2_ca" value="">
+                                    <input type="text" required class="form-control" name="remark2_ca" value="">
                                 @endif
                             </td>
                             <td width="10%">
                                 @if(isset($data_2000_2011_ca->remark_number))
                                     {{$data_2000_2011_ca->remark_number}}
                                 @else
-                                    <input type="text" class="form-control" name="remark3_ca" value="">
+                                    <input type="text" required class="form-control" name="remark3_ca" value="">
                                 @endif
                             </td>
                             <td width="10%">
                                 @if(isset($data_2000_2011_ca->remark_type))
                                     {{$data_2000_2011_ca->remark_type}}
                                 @else
-                                    <input type="text" class="form-control" name="remark4_ca" value="">
+                                    <input type="text" required class="form-control" name="remark4_ca" value="">
                                 @endif
                             </td>
                             <td width="10%">
                                 @if(isset($data_2000_2011_ca->remark_const_no))
                                     {{$data_2000_2011_ca->remark_const_no}}
                                 @else
-                                    <input type="text" class="form-control" name="remark5_ca" value="">
+                                    <input type="text" required class="form-control" name="remark5_ca" value="">
                                 @endif
                             </td>
                             <td width="10%">
                                 @if(isset($data_2000_2011_ca->remark_sr_no))
                                     {{$data_2000_2011_ca->remark_sr_no}}
                                 @else
-                                    <input type="text" class="form-control" name="remark6_ca" value="">
+                                    <input type="text" required class="form-control" name="remark6_ca" value="">
                                 @endif
                             </td>
                             <td width="10%">
                                 @if(isset($data_2000_2011_ca->remark_part_no))
                                     {{$data_2000_2011_ca->remark_part_no}}
                                 @else
-                                    <input type="text" class="form-control" name="remark7_ca" value="">
+                                    <input type="text" required class="form-control" name="remark7_ca" value="">
                                 @endif
                             </td>
                         </tr>
@@ -2757,7 +2764,7 @@ th,td {
                           @if(isset($data_2000_2011_ca->overall_eligibility))
                             {{ $data_2000_2011_ca->overall_eligibility == 1 ? 'Verified' : ($data_2000_2011_ca->overall_eligibility == 2 ? 'Not Matched' : 'Unavailable') }}
                           @else
-                            <select name="elg" class="form-control" style="padding: 2px 1rem !important;">
+                            <select name="elg" required class="form-control" style="padding: 2px 1rem !important;">
                               <option value="0">-- Select Option --</option>
                               <option value="1" {{ isset($data_2000_2011_ca->overall_eligibility) && ($data_2000_2011_ca->overall_eligibility == 1) ? 'selected' : '' }}>Verified</option>
                               <option value="2" {{ isset($data_2000_2011_ca->overall_eligibility) && ($data_2000_2011_ca->overall_eligibility == 2) ? 'selected' : '' }}> Not Matched</option>
@@ -2769,7 +2776,7 @@ th,td {
                           @if(isset($data_2000_2011_ca->overall_remark))
                             {{ $data_2000_2011_ca->overall_remark }}
                           @else
-                          <textarea class="form-control" style="height:auto!important;"  name="remark" cols="100">{{ isset($data_2000_2011_ca->overall_remark) ? $data_2000_2011_ca->overall_remark : $remark2}}</textarea>
+                          <textarea required class="form-control" style="height:auto!important;"  name="remark" cols="100">{{ isset($data_2000_2011_ca->overall_remark) ? $data_2000_2011_ca->overall_remark : $remark2}}</textarea>
                            @endif
                         </td>
                       </tr>
@@ -3604,49 +3611,49 @@ th,td {
                                   @if(isset($data_current->remark_name))
                                       {{ $data_current->remark_name }}
                                   @else
-                                      <input type="text" class="form-control" name="remark1" value="" <?= $access ?>>
+                                      <input type="text" required class="form-control" name="remark1" value="" <?= $access ?>>
                                   @endif
                               </td>
                               <td width="20%">
                                   @if(isset($data_current->remark_address))
                                       {{ $data_current->remark_address }}
                                   @else
-                                      <input type="text" class="form-control" name="remark2" value="" <?= $access ?>>
+                                      <input type="text" required class="form-control" name="remark2" value="" <?= $access ?>>
                                   @endif
                               </td>
                               <td width="10%">
                                   @if(isset($data_current->remark_number))
                                       {{ $data_current->remark_number }}
                                   @else
-                                      <input type="text" class="form-control" name="remark3" value="" <?= $access ?>>
+                                      <input type="text"  required class="form-control" name="remark3" value="" <?= $access ?>>
                                   @endif
                               </td>
                               <td width="10%">
                                   @if(isset($data_current->remark_type))
                                       {{ $data_current->remark_type }}
                                   @else
-                                      <input type="text" class="form-control" name="remark4" value="" <?= $access ?>>
+                                      <input type="text" required class="form-control" name="remark4" value="" <?= $access ?>>
                                   @endif
                               </td>
                               <td width="10%">
                                   @if(isset($data_current->remark_const_no))
                                       {{ $data_current->remark_const_no }}
                                   @else
-                                      <input type="text" class="form-control" name="remark5" value="" <?= $access ?>>
+                                      <input type="text" required class="form-control" name="remark5" value="" <?= $access ?>>
                                   @endif
                               </td>
                               <td width="10%">
                                   @if(isset($data_current->remark_sr_no))
                                       {{ $data_current->remark_sr_no }}
                                   @else
-                                      <input type="text" class="form-control" name="remark6" value="" <?= $access ?>>
+                                      <input type="text" required class="form-control" name="remark6" value="" <?= $access ?>>
                                   @endif
                               </td>
                               <td width="10%">
                                   @if(isset($data_current->remark_part_no))
                                       {{ $data_current->remark_part_no }}
                                   @else
-                                      <input type="text" class="form-control" name="remark7" value="" <?= $access ?>>
+                                      <input type="text" required class="form-control" name="remark7" value="" <?= $access ?>>
                                   @endif
                               </td>
                         </tr>
@@ -3896,49 +3903,49 @@ th,td {
                                     @if(isset($data_current_ca->remark_name))
                                         {{ $data_current_ca->remark_name }}
                                     @else
-                                        <input type="text" class="form-control" name="remark1_ca" value="{{ isset($data_current_ca->remark_name) ? $data_current_ca->remark_name : '' }}" {{ isset($data_current_ca->remark_name) ? 'readonly' : '' }}>
+                                        <input type="text" required class="form-control" name="remark1_ca" value="{{ isset($data_current_ca->remark_name) ? $data_current_ca->remark_name : '' }}" {{ isset($data_current_ca->remark_name) ? 'readonly' : '' }}>
                                     @endif
                                 </td>
                                 <td width="20%">
                                     @if(isset($data_current_ca->remark_address))
                                         {{ $data_current_ca->remark_address }}
                                     @else
-                                        <input type="text" class="form-control" name="remark2_ca" value="{{ isset($data_current_ca->remark_address) ? $data_current_ca->remark_address : '' }}" {{ isset($data_current_ca->remark_address) ? 'readonly' : '' }}>
+                                        <input type="text" required class="form-control" name="remark2_ca" value="{{ isset($data_current_ca->remark_address) ? $data_current_ca->remark_address : '' }}" {{ isset($data_current_ca->remark_address) ? 'readonly' : '' }}>
                                     @endif
                                 </td>
                                 <td width="10%">
                                     @if(isset($data_current_ca->remark_number))
                                         {{ $data_current_ca->remark_number }}
                                     @else
-                                        <input type="text" class="form-control" name="remark3_ca" value="{{ isset($data_current_ca->remark_number) ? $data_current_ca->remark_number : '' }}" {{ isset($data_current_ca->remark_number) ? 'readonly' : '' }}>
+                                        <input type="text" required class="form-control" name="remark3_ca" value="{{ isset($data_current_ca->remark_number) ? $data_current_ca->remark_number : '' }}" {{ isset($data_current_ca->remark_number) ? 'readonly' : '' }}>
                                     @endif
                                 </td>
                                 <td width="10%">
                                     @if(isset($data_current_ca->remark_type))
                                         {{ $data_current_ca->remark_type }}
                                     @else
-                                        <input type="text" class="form-control" name="remark4_ca" value="{{ isset($data_current_ca->remark_type) ? $data_current_ca->remark_type : '' }}" {{ isset($data_current_ca->remark_type) ? 'readonly' : '' }}>
+                                        <input type="text" required class="form-control" name="remark4_ca" value="{{ isset($data_current_ca->remark_type) ? $data_current_ca->remark_type : '' }}" {{ isset($data_current_ca->remark_type) ? 'readonly' : '' }}>
                                     @endif
                                 </td>
                                 <td width="10%">
                                     @if(isset($data_current_ca->remark_const_no))
                                         {{ $data_current_ca->remark_const_no }}
                                     @else
-                                        <input type="text" class="form-control" name="remark5_ca" value="{{ isset($data_current_ca->remark_const_no) ? $data_current_ca->remark_const_no : '' }}" {{ isset($data_current_ca->remark_const_no) ? 'readonly' : '' }}>
+                                        <input type="text" required class="form-control" name="remark5_ca" value="{{ isset($data_current_ca->remark_const_no) ? $data_current_ca->remark_const_no : '' }}" {{ isset($data_current_ca->remark_const_no) ? 'readonly' : '' }}>
                                     @endif
                                 </td>
                                 <td width="10%">
                                     @if(isset($data_current_ca->remark_sr_no))
                                         {{ $data_current_ca->remark_sr_no }}
                                     @else
-                                        <input type="text" class="form-control" name="remark6_ca" value="{{ isset($data_current_ca->remark_sr_no) ? $data_current_ca->remark_sr_no : '' }}" {{ isset($data_current_ca->remark_sr_no) ? 'readonly' : '' }}>
+                                        <input type="text" required class="form-control" name="remark6_ca" value="{{ isset($data_current_ca->remark_sr_no) ? $data_current_ca->remark_sr_no : '' }}" {{ isset($data_current_ca->remark_sr_no) ? 'readonly' : '' }}>
                                     @endif
                                 </td>
                                 <td width="10%">
                                     @if(isset($data_current_ca->remark_part_no))
                                         {{ $data_current_ca->remark_part_no }}
                                     @else
-                                        <input type="text" class="form-control" name="remark7_ca" value="{{ isset($data_current_ca->remark_part_no) ? $data_current_ca->remark_part_no : '' }}" {{ isset($data_current_ca->remark_part_no) ? 'readonly' : '' }}>
+                                        <input type="text" required class="form-control" name="remark7_ca" value="{{ isset($data_current_ca->remark_part_no) ? $data_current_ca->remark_part_no : '' }}" {{ isset($data_current_ca->remark_part_no) ? 'readonly' : '' }}>
                                     @endif
                                 </td>
                             </tr>
@@ -3957,7 +3964,7 @@ th,td {
                               {{ $data_current_ca->overall_eligibility === 1 ? 'Verified' : ($data_current_ca->overall_eligibility === 2 ? ' Not Matched' : ' Unavailable') }}
 
                             @else
-                              <select name="elg" class="form-control" style="padding: 2px 1rem !important;">
+                              <select name="elg" required class="form-control" style="padding: 2px 1rem !important;">
                                 <option value="0">-- Select Option --</option>
                                 <option value="1" {{ isset($data_current_ca->overall_eligibility) && ($data_current_ca->overall_eligibility == 1) ? 'selected' : '' }}>Verified</option>
                                 <option value="2" {{ isset($data_current_ca->overall_eligibility) && ($data_current_ca->overall_eligibility == 2) ? 'selected' : '' }}> Not Matched</option>
@@ -3969,7 +3976,7 @@ th,td {
                             @if(isset($data_current_ca->overall_remark))
                               {{ $data_current_ca->overall_remark }}
                             @else
-                            <textarea class="form-control" style="height:auto!important;"  name="remark" {{ isset($data_current_ca->overall_remark) ? 'readonly' : '' }} cols="100">{{ isset($data_current_ca->overall_remark) ? $data_current_ca->overall_remark :  $remark3 }}</textarea>                            @endif
+                            <textarea required class="form-control" style="height:auto!important;"  name="remark" {{ isset($data_current_ca->overall_remark) ? 'readonly' : '' }} cols="100">{{ isset($data_current_ca->overall_remark) ? $data_current_ca->overall_remark :  $remark3 }}</textarea>                            @endif
                           </td>
 
 
@@ -4011,7 +4018,7 @@ th,td {
                               <div class="card-body">
                                 <div class="table-responsive" id="sra-table">
                                   <table class="table table-borderless table-responsive">
-                                    <form method="post" enctype="multipart/form-data" action="{{ route('admin.sra.store_overall_remark') }}">
+                                    <form method="post" enctype="multipart/form-data" action="{{ route('admin.sra.store_overall_remark') }}" name="myForm" id="myForm" onsubmit="return validateForm();">
                                     @csrf
                                     <input type="hidden" name="hutid" value="<?php echo $hid;?>">
                                     <input type="hidden" name="user" value="{{auth()->user()->id}}">
@@ -4020,7 +4027,7 @@ th,td {
                                       <td>
                                         <div class="form-group">
                                         <label>Status:</label>
-                                        <select name="elg" class="form-control">
+                                        <select name="elg" class="form-control" required>
                                               <?php if(count($overall_remark) == 0){ ?>
                                              <option value="0">-- Select Option --</option>
                                              <option value="1" >Verified</option>
@@ -4058,7 +4065,7 @@ th,td {
                                         <div class="form-group">
                                         <label>Remark:</label>
                                         <?php if(count($overall_remark) == 0){ ?>
-                                          <textarea name="remark" cols="100" class="form-control"> </textarea>
+                                          <textarea name="remark" cols="100" class="form-control" required> </textarea>
                                         <?php }else{ ?>
                                            <textarea name="remark" cols="100" class="form-control">{{$overall_remark[0]->election_remark}}</textarea>
                                         <?php } ?>
@@ -4101,7 +4108,7 @@ th,td {
           </div>
           <div class="tab">
             <input type="radio" name="css-tabs" id="tab-4" class="tab-switch">
-             <a href="index.php/sra/" class="tab-label" style="color:#495057!important;font-size:16px !important;">Photo Pass Details</a>
+             <a href="index.php/sra/photopass/{{ $hid }}"class="tab-label" style="color:#495057!important;font-size:16px !important;">Photo Pass Details</a>
             <div class="tab-content">Photo Pass Details</div>
           </div>
           <div class="tab">
@@ -4111,7 +4118,7 @@ th,td {
           </div>
           <div class="tab">
                 <input type="radio" name="css-tabs" id="tab-7" class="tab-switch">
-                <a href="index.php/sra/adhar/{{$hid}}" class="tab-label" style="color:#495057!important;font-size:16px !important;">Aadhar Card</a>
+                <a href="index.php/sra/adhar/{{$hid}}" class="tab-label" style="color:#495057!important;font-size:16px !important;">Aadhaar Card</a>
                 <div class="tab-content">Registration Agreement Details</div>
               </div>
             <div class="tab">
@@ -4137,6 +4144,19 @@ th,td {
     background: white !important;
   }
 </style>
+<script>
+   function validateForm() {
+   
+    var remarkValue = document.forms["myForm"]["remark"].value;
+    if (remarkValue.trim() === "") {
+      alert("Please enter an overall remark.");
+      return false;
+    }
+
+   
+
+   }
+  </script>
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -4164,3 +4184,17 @@ $(document).ready(function() {
      
 });
 </script>
+<script>
+    $(document).ready(function() {
+        // Hide success message after 5 seconds
+        setTimeout(function() {
+            $('.alert-success').fadeOut('slow');
+        }, 5000);
+    });
+</script>
+
+
+
+
+
+

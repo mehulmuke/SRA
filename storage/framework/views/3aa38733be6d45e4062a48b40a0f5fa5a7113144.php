@@ -150,4 +150,4 @@
 
 
 
-<?php echo $__env->make('admin::layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/sraservices/Modules/Admin/Resources/views/sra/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin::layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/sra_annexure/Modules/Admin/Resources/views/sra/index.blade.php ENDPATH**/ ?>

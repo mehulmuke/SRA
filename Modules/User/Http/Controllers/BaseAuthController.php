@@ -90,7 +90,7 @@ abstract class BaseAuthController extends Controller
         $request->merge(clean($request->all()));
         try {
             $loggedIn = $this->auth->login([
-                'email' => $request->email,
+                'username' => $request->email,
                 'password' => $request->password,
             ], (bool) $request->get('remember_me', false));
 

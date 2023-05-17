@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
 
 
 <?php $__env->startComponent('admin::include.page.header'); ?>
@@ -154,7 +159,7 @@
 th,td {
         border-bottom: none !important;
         height: 30px !important;
-        font-size:16px !important;
+        font-size:18px !important;
     }
     h4{
       font-size:18px !important;
@@ -282,8 +287,9 @@ th,td {
                                 <table class="table table-borderless table-responsive">
                                   <thead>
                                           <tr>
-                                      <th>Hut ID</th>
-                                      <th>Cluster ID</th>
+                                      <th>Cluster Id</th>
+                                      <th>Hut Id</th>
+                                      
                                       <th>Scheme Name</th>
                                       <th>Owner Name</th>
                                       <th>Address</th>
@@ -297,9 +303,10 @@ th,td {
                                   <tbody>
                                     <tr>
                                       <?php $__currentLoopData = $query; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                      <td><?php echo e($data->ClusterId); ?></td>
                                         <td><?php echo e($data->HUTSURVERYID); ?></td>
                                         <?php $hid = $data->HUTSURVERYID ?>
-                                        <td><?php echo e($data->ClusterId); ?></td>
+                                       
                                         <td><?php echo e($data->SchemeName); ?></td>                                        
                                         <td><?php echo e($data->HUTOWNERNAME); ?></td>
                                         <td><?php echo e($data->Address); ?></td>
@@ -1178,7 +1185,7 @@ th,td {
                                         <?php echo e($data_2000->remark_name); ?>
 
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark1" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark1" value="" <?= $access ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="20%">
@@ -1186,7 +1193,7 @@ th,td {
                                         <?php echo e($data_2000->remark_address); ?>
 
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark2" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark2" value="" <?= $access ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="10%">
@@ -1194,7 +1201,7 @@ th,td {
                                         <?php echo e($data_2000->remark_number); ?>
 
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark3" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark3" value="" <?= $access ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="10%">
@@ -1202,7 +1209,7 @@ th,td {
                                         <?php echo e($data_2000->remark_type); ?>
 
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark4" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark4" value="" <?= $access ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="10%">
@@ -1210,7 +1217,7 @@ th,td {
                                         <?php echo e($data_2000->remark_const_no); ?>
 
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark5" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark5" value="" <?= $access ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="10%">
@@ -1218,7 +1225,7 @@ th,td {
                                         <?php echo e($data_2000->remark_sr_no); ?>
 
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark6" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark6" value="" <?= $access ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="10%">
@@ -1226,7 +1233,7 @@ th,td {
                                         <?php echo e($data_2000->remark_part_no); ?>
 
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark7" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark7" value="" <?= $access ?>>
                                     <?php endif; ?>
                                 </td>
                             </tr>
@@ -1479,7 +1486,7 @@ th,td {
                                       <?php echo e($data_2000_ca->remark_name); ?>
 
                                   <?php else: ?>
-                                      <input type="text" class="form-control" name="remark1_ca" value="" >
+                                      <input type="text" required class="form-control" name="remark1_ca" value="" >
                                   <?php endif; ?>
                               </td>
                               <td width="20%">
@@ -1487,7 +1494,7 @@ th,td {
                                       <?php echo e($data_2000_ca->remark_address); ?>
 
                                   <?php else: ?>
-                                      <input type="text" class="form-control" name="remark2_ca" value="" >
+                                      <input type="text" required class="form-control" name="remark2_ca" value="" >
                                   <?php endif; ?>
                               </td>
                               <td width="10%">
@@ -1495,7 +1502,7 @@ th,td {
                                       <?php echo e($data_2000_ca->remark_number); ?>
 
                                   <?php else: ?>
-                                      <input type="text" class="form-control" name="remark3_ca" value="" >
+                                      <input type="text" required class="form-control" name="remark3_ca" value="" >
                                   <?php endif; ?>
                               </td>
                               <td width="10%">
@@ -1503,7 +1510,7 @@ th,td {
                                       <?php echo e($data_2000_ca->remark_type); ?>
 
                                   <?php else: ?>
-                                      <input type="text" class="form-control" name="remark4_ca" value="" >
+                                      <input type="text" required class="form-control" name="remark4_ca" value="" >
                                   <?php endif; ?>
                               </td>
                               <td width="10%">
@@ -1511,7 +1518,7 @@ th,td {
                                       <?php echo e($data_2000_ca->remark_const_no); ?>
 
                                   <?php else: ?>
-                                      <input type="text" class="form-control" name="remark5_ca" value="" >
+                                      <input type="text" required class="form-control" name="remark5_ca" value="" >
                                   <?php endif; ?>
                               </td>
                               <td width="10%">
@@ -1519,7 +1526,7 @@ th,td {
                                       <?php echo e($data_2000_ca->remark_sr_no); ?>
 
                                   <?php else: ?>
-                                      <input type="text" class="form-control" name="remark6_ca" value="" >
+                                      <input type="text" required class="form-control" name="remark6_ca" value="" >
                                   <?php endif; ?>
                               </td>
                               <td width="10%">
@@ -1527,7 +1534,7 @@ th,td {
                                       <?php echo e($data_2000_ca->remark_part_no); ?>
 
                                   <?php else: ?>
-                                      <input type="text" class="form-control" name="remark7_ca" value="" >
+                                      <input type="text" required class="form-control" name="remark7_ca" value="" >
                                   <?php endif; ?>
                               </td>
                           </tr>
@@ -2419,49 +2426,49 @@ th,td {
                                     <?php if(isset($data_2000_2011->remark_name)): ?>
                                         <span><?php echo e($data_2000_2011->remark_name); ?></span>
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark1" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark1" value="" <?= $access ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="20%">
                                     <?php if(isset($data_2000_2011->remark_address)): ?>
                                         <span><?php echo e($data_2000_2011->remark_address); ?></span>
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark2" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark2" value="" <?= $access ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="10%">
                                     <?php if(isset($data_2000_2011->remark_number)): ?>
                                         <span><?php echo e($data_2000_2011->remark_number); ?></span>
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark3" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark3" value="" <?= $access ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="10%">
                                     <?php if(isset($data_2000_2011->remark_type)): ?>
                                         <span><?php echo e($data_2000_2011->remark_type); ?></span>
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark4" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark4" value="" <?= $access ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="10%">
                                     <?php if(isset($data_2000_2011->remark_const_no)): ?>
                                         <span><?php echo e($data_2000_2011->remark_const_no); ?></span>
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark5" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark5" value="" <?= $access ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="10%">
                                     <?php if(isset($data_2000_2011->remark_sr_no)): ?>
                                         <span><?php echo e($data_2000_2011->remark_sr_no); ?></span>
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark6" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark6" value="" <?= $access ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="10%">
                                     <?php if(isset($data_2000_2011->remark_part_no)): ?>
                                         <span><?php echo e($data_2000_2011->remark_part_no); ?></span>
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark7" value="" <?= $access ?>>
+                                        <input type="text" required class="form-control" name="remark7" value="" <?= $access ?>>
                                     <?php endif; ?>
                                 </td>
                             </tr>
@@ -2493,7 +2500,7 @@ th,td {
                                     Unavailable
                                     <?php endif; ?>
                                 <?php else: ?>
-                                    <select name="elg" class="form-control" style="padding: 2px 1rem !important;">
+                                    <select name="elg" required class="form-control" style="padding: 2px 1rem !important;">
                                         <option value="0">-- Select Option --</option>
                                         <option value="1" <?php echo e(isset($data_2000_2011->overall_eligibility) && ($data_2000_2011->overall_eligibility == 1) ? 'selected' : ''); ?>>Verified</option>
                                         <option value="2" <?php echo e(isset($data_2000_2011->overall_eligibility) && ($data_2000_2011->overall_eligibility == 2) ? 'selected' : ''); ?>>Not Matched</option>
@@ -2718,7 +2725,7 @@ th,td {
                                     <?php echo e($data_2000_2011_ca->remark_name); ?>
 
                                 <?php else: ?>
-                                    <input type="text" class="form-control" name="remark1_ca" value="">
+                                    <input type="text" required class="form-control" name="remark1_ca" value="">
                                 <?php endif; ?>
                             </td>
                             <td width="20%">
@@ -2726,7 +2733,7 @@ th,td {
                                     <?php echo e($data_2000_2011_ca->remark_address); ?>
 
                                 <?php else: ?>
-                                    <input type="text" class="form-control" name="remark2_ca" value="">
+                                    <input type="text" required class="form-control" name="remark2_ca" value="">
                                 <?php endif; ?>
                             </td>
                             <td width="10%">
@@ -2734,7 +2741,7 @@ th,td {
                                     <?php echo e($data_2000_2011_ca->remark_number); ?>
 
                                 <?php else: ?>
-                                    <input type="text" class="form-control" name="remark3_ca" value="">
+                                    <input type="text" required class="form-control" name="remark3_ca" value="">
                                 <?php endif; ?>
                             </td>
                             <td width="10%">
@@ -2742,7 +2749,7 @@ th,td {
                                     <?php echo e($data_2000_2011_ca->remark_type); ?>
 
                                 <?php else: ?>
-                                    <input type="text" class="form-control" name="remark4_ca" value="">
+                                    <input type="text" required class="form-control" name="remark4_ca" value="">
                                 <?php endif; ?>
                             </td>
                             <td width="10%">
@@ -2750,7 +2757,7 @@ th,td {
                                     <?php echo e($data_2000_2011_ca->remark_const_no); ?>
 
                                 <?php else: ?>
-                                    <input type="text" class="form-control" name="remark5_ca" value="">
+                                    <input type="text" required class="form-control" name="remark5_ca" value="">
                                 <?php endif; ?>
                             </td>
                             <td width="10%">
@@ -2758,7 +2765,7 @@ th,td {
                                     <?php echo e($data_2000_2011_ca->remark_sr_no); ?>
 
                                 <?php else: ?>
-                                    <input type="text" class="form-control" name="remark6_ca" value="">
+                                    <input type="text" required class="form-control" name="remark6_ca" value="">
                                 <?php endif; ?>
                             </td>
                             <td width="10%">
@@ -2766,7 +2773,7 @@ th,td {
                                     <?php echo e($data_2000_2011_ca->remark_part_no); ?>
 
                                 <?php else: ?>
-                                    <input type="text" class="form-control" name="remark7_ca" value="">
+                                    <input type="text" required class="form-control" name="remark7_ca" value="">
                                 <?php endif; ?>
                             </td>
                         </tr>
@@ -2784,7 +2791,7 @@ th,td {
                             <?php echo e($data_2000_2011_ca->overall_eligibility == 1 ? 'Verified' : ($data_2000_2011_ca->overall_eligibility == 2 ? 'Not Matched' : 'Unavailable')); ?>
 
                           <?php else: ?>
-                            <select name="elg" class="form-control" style="padding: 2px 1rem !important;">
+                            <select name="elg" required class="form-control" style="padding: 2px 1rem !important;">
                               <option value="0">-- Select Option --</option>
                               <option value="1" <?php echo e(isset($data_2000_2011_ca->overall_eligibility) && ($data_2000_2011_ca->overall_eligibility == 1) ? 'selected' : ''); ?>>Verified</option>
                               <option value="2" <?php echo e(isset($data_2000_2011_ca->overall_eligibility) && ($data_2000_2011_ca->overall_eligibility == 2) ? 'selected' : ''); ?>> Not Matched</option>
@@ -2797,7 +2804,7 @@ th,td {
                             <?php echo e($data_2000_2011_ca->overall_remark); ?>
 
                           <?php else: ?>
-                          <textarea class="form-control" style="height:auto!important;"  name="remark" cols="100"><?php echo e(isset($data_2000_2011_ca->overall_remark) ? $data_2000_2011_ca->overall_remark : $remark2); ?></textarea>
+                          <textarea required class="form-control" style="height:auto!important;"  name="remark" cols="100"><?php echo e(isset($data_2000_2011_ca->overall_remark) ? $data_2000_2011_ca->overall_remark : $remark2); ?></textarea>
                            <?php endif; ?>
                         </td>
                       </tr>
@@ -3631,7 +3638,7 @@ th,td {
                                       <?php echo e($data_current->remark_name); ?>
 
                                   <?php else: ?>
-                                      <input type="text" class="form-control" name="remark1" value="" <?= $access ?>>
+                                      <input type="text" required class="form-control" name="remark1" value="" <?= $access ?>>
                                   <?php endif; ?>
                               </td>
                               <td width="20%">
@@ -3639,7 +3646,7 @@ th,td {
                                       <?php echo e($data_current->remark_address); ?>
 
                                   <?php else: ?>
-                                      <input type="text" class="form-control" name="remark2" value="" <?= $access ?>>
+                                      <input type="text" required class="form-control" name="remark2" value="" <?= $access ?>>
                                   <?php endif; ?>
                               </td>
                               <td width="10%">
@@ -3647,7 +3654,7 @@ th,td {
                                       <?php echo e($data_current->remark_number); ?>
 
                                   <?php else: ?>
-                                      <input type="text" class="form-control" name="remark3" value="" <?= $access ?>>
+                                      <input type="text"  required class="form-control" name="remark3" value="" <?= $access ?>>
                                   <?php endif; ?>
                               </td>
                               <td width="10%">
@@ -3655,7 +3662,7 @@ th,td {
                                       <?php echo e($data_current->remark_type); ?>
 
                                   <?php else: ?>
-                                      <input type="text" class="form-control" name="remark4" value="" <?= $access ?>>
+                                      <input type="text" required class="form-control" name="remark4" value="" <?= $access ?>>
                                   <?php endif; ?>
                               </td>
                               <td width="10%">
@@ -3663,7 +3670,7 @@ th,td {
                                       <?php echo e($data_current->remark_const_no); ?>
 
                                   <?php else: ?>
-                                      <input type="text" class="form-control" name="remark5" value="" <?= $access ?>>
+                                      <input type="text" required class="form-control" name="remark5" value="" <?= $access ?>>
                                   <?php endif; ?>
                               </td>
                               <td width="10%">
@@ -3671,7 +3678,7 @@ th,td {
                                       <?php echo e($data_current->remark_sr_no); ?>
 
                                   <?php else: ?>
-                                      <input type="text" class="form-control" name="remark6" value="" <?= $access ?>>
+                                      <input type="text" required class="form-control" name="remark6" value="" <?= $access ?>>
                                   <?php endif; ?>
                               </td>
                               <td width="10%">
@@ -3679,7 +3686,7 @@ th,td {
                                       <?php echo e($data_current->remark_part_no); ?>
 
                                   <?php else: ?>
-                                      <input type="text" class="form-control" name="remark7" value="" <?= $access ?>>
+                                      <input type="text" required class="form-control" name="remark7" value="" <?= $access ?>>
                                   <?php endif; ?>
                               </td>
                         </tr>
@@ -3932,7 +3939,7 @@ th,td {
                                         <?php echo e($data_current_ca->remark_name); ?>
 
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark1_ca" value="<?php echo e(isset($data_current_ca->remark_name) ? $data_current_ca->remark_name : ''); ?>" <?php echo e(isset($data_current_ca->remark_name) ? 'readonly' : ''); ?>>
+                                        <input type="text" required class="form-control" name="remark1_ca" value="<?php echo e(isset($data_current_ca->remark_name) ? $data_current_ca->remark_name : ''); ?>" <?php echo e(isset($data_current_ca->remark_name) ? 'readonly' : ''); ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="20%">
@@ -3940,7 +3947,7 @@ th,td {
                                         <?php echo e($data_current_ca->remark_address); ?>
 
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark2_ca" value="<?php echo e(isset($data_current_ca->remark_address) ? $data_current_ca->remark_address : ''); ?>" <?php echo e(isset($data_current_ca->remark_address) ? 'readonly' : ''); ?>>
+                                        <input type="text" required class="form-control" name="remark2_ca" value="<?php echo e(isset($data_current_ca->remark_address) ? $data_current_ca->remark_address : ''); ?>" <?php echo e(isset($data_current_ca->remark_address) ? 'readonly' : ''); ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="10%">
@@ -3948,7 +3955,7 @@ th,td {
                                         <?php echo e($data_current_ca->remark_number); ?>
 
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark3_ca" value="<?php echo e(isset($data_current_ca->remark_number) ? $data_current_ca->remark_number : ''); ?>" <?php echo e(isset($data_current_ca->remark_number) ? 'readonly' : ''); ?>>
+                                        <input type="text" required class="form-control" name="remark3_ca" value="<?php echo e(isset($data_current_ca->remark_number) ? $data_current_ca->remark_number : ''); ?>" <?php echo e(isset($data_current_ca->remark_number) ? 'readonly' : ''); ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="10%">
@@ -3956,7 +3963,7 @@ th,td {
                                         <?php echo e($data_current_ca->remark_type); ?>
 
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark4_ca" value="<?php echo e(isset($data_current_ca->remark_type) ? $data_current_ca->remark_type : ''); ?>" <?php echo e(isset($data_current_ca->remark_type) ? 'readonly' : ''); ?>>
+                                        <input type="text" required class="form-control" name="remark4_ca" value="<?php echo e(isset($data_current_ca->remark_type) ? $data_current_ca->remark_type : ''); ?>" <?php echo e(isset($data_current_ca->remark_type) ? 'readonly' : ''); ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="10%">
@@ -3964,7 +3971,7 @@ th,td {
                                         <?php echo e($data_current_ca->remark_const_no); ?>
 
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark5_ca" value="<?php echo e(isset($data_current_ca->remark_const_no) ? $data_current_ca->remark_const_no : ''); ?>" <?php echo e(isset($data_current_ca->remark_const_no) ? 'readonly' : ''); ?>>
+                                        <input type="text" required class="form-control" name="remark5_ca" value="<?php echo e(isset($data_current_ca->remark_const_no) ? $data_current_ca->remark_const_no : ''); ?>" <?php echo e(isset($data_current_ca->remark_const_no) ? 'readonly' : ''); ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="10%">
@@ -3972,7 +3979,7 @@ th,td {
                                         <?php echo e($data_current_ca->remark_sr_no); ?>
 
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark6_ca" value="<?php echo e(isset($data_current_ca->remark_sr_no) ? $data_current_ca->remark_sr_no : ''); ?>" <?php echo e(isset($data_current_ca->remark_sr_no) ? 'readonly' : ''); ?>>
+                                        <input type="text" required class="form-control" name="remark6_ca" value="<?php echo e(isset($data_current_ca->remark_sr_no) ? $data_current_ca->remark_sr_no : ''); ?>" <?php echo e(isset($data_current_ca->remark_sr_no) ? 'readonly' : ''); ?>>
                                     <?php endif; ?>
                                 </td>
                                 <td width="10%">
@@ -3980,7 +3987,7 @@ th,td {
                                         <?php echo e($data_current_ca->remark_part_no); ?>
 
                                     <?php else: ?>
-                                        <input type="text" class="form-control" name="remark7_ca" value="<?php echo e(isset($data_current_ca->remark_part_no) ? $data_current_ca->remark_part_no : ''); ?>" <?php echo e(isset($data_current_ca->remark_part_no) ? 'readonly' : ''); ?>>
+                                        <input type="text" required class="form-control" name="remark7_ca" value="<?php echo e(isset($data_current_ca->remark_part_no) ? $data_current_ca->remark_part_no : ''); ?>" <?php echo e(isset($data_current_ca->remark_part_no) ? 'readonly' : ''); ?>>
                                     <?php endif; ?>
                                 </td>
                             </tr>
@@ -4000,7 +4007,7 @@ th,td {
 
 
                             <?php else: ?>
-                              <select name="elg" class="form-control" style="padding: 2px 1rem !important;">
+                              <select name="elg" required class="form-control" style="padding: 2px 1rem !important;">
                                 <option value="0">-- Select Option --</option>
                                 <option value="1" <?php echo e(isset($data_current_ca->overall_eligibility) && ($data_current_ca->overall_eligibility == 1) ? 'selected' : ''); ?>>Verified</option>
                                 <option value="2" <?php echo e(isset($data_current_ca->overall_eligibility) && ($data_current_ca->overall_eligibility == 2) ? 'selected' : ''); ?>> Not Matched</option>
@@ -4013,7 +4020,7 @@ th,td {
                               <?php echo e($data_current_ca->overall_remark); ?>
 
                             <?php else: ?>
-                            <textarea class="form-control" style="height:auto!important;"  name="remark" <?php echo e(isset($data_current_ca->overall_remark) ? 'readonly' : ''); ?> cols="100"><?php echo e(isset($data_current_ca->overall_remark) ? $data_current_ca->overall_remark :  $remark3); ?></textarea>                            <?php endif; ?>
+                            <textarea required class="form-control" style="height:auto!important;"  name="remark" <?php echo e(isset($data_current_ca->overall_remark) ? 'readonly' : ''); ?> cols="100"><?php echo e(isset($data_current_ca->overall_remark) ? $data_current_ca->overall_remark :  $remark3); ?></textarea>                            <?php endif; ?>
                           </td>
 
 
@@ -4055,7 +4062,7 @@ th,td {
                               <div class="card-body">
                                 <div class="table-responsive" id="sra-table">
                                   <table class="table table-borderless table-responsive">
-                                    <form method="post" enctype="multipart/form-data" action="<?php echo e(route('admin.sra.store_overall_remark')); ?>">
+                                    <form method="post" enctype="multipart/form-data" action="<?php echo e(route('admin.sra.store_overall_remark')); ?>" name="myForm" id="myForm" onsubmit="return validateForm();">
                                     <?php echo csrf_field(); ?>
                                     <input type="hidden" name="hutid" value="<?php echo $hid;?>">
                                     <input type="hidden" name="user" value="<?php echo e(auth()->user()->id); ?>">
@@ -4064,7 +4071,7 @@ th,td {
                                       <td>
                                         <div class="form-group">
                                         <label>Status:</label>
-                                        <select name="elg" class="form-control">
+                                        <select name="elg" class="form-control" required>
                                               <?php if(count($overall_remark) == 0){ ?>
                                              <option value="0">-- Select Option --</option>
                                              <option value="1" >Verified</option>
@@ -4102,7 +4109,7 @@ th,td {
                                         <div class="form-group">
                                         <label>Remark:</label>
                                         <?php if(count($overall_remark) == 0){ ?>
-                                          <textarea name="remark" cols="100" class="form-control"> </textarea>
+                                          <textarea name="remark" cols="100" class="form-control" required> </textarea>
                                         <?php }else{ ?>
                                            <textarea name="remark" cols="100" class="form-control"><?php echo e($overall_remark[0]->election_remark); ?></textarea>
                                         <?php } ?>
@@ -4145,7 +4152,7 @@ th,td {
           </div>
           <div class="tab">
             <input type="radio" name="css-tabs" id="tab-4" class="tab-switch">
-             <a href="index.php/sra/" class="tab-label" style="color:#495057!important;font-size:16px !important;">Photo Pass Details</a>
+             <a href="index.php/sra/photopass/<?php echo e($hid); ?>"class="tab-label" style="color:#495057!important;font-size:16px !important;">Photo Pass Details</a>
             <div class="tab-content">Photo Pass Details</div>
           </div>
           <div class="tab">
@@ -4155,7 +4162,7 @@ th,td {
           </div>
           <div class="tab">
                 <input type="radio" name="css-tabs" id="tab-7" class="tab-switch">
-                <a href="index.php/sra/adhar/<?php echo e($hid); ?>" class="tab-label" style="color:#495057!important;font-size:16px !important;">Aadhar Card</a>
+                <a href="index.php/sra/adhar/<?php echo e($hid); ?>" class="tab-label" style="color:#495057!important;font-size:16px !important;">Aadhaar Card</a>
                 <div class="tab-content">Registration Agreement Details</div>
               </div>
             <div class="tab">
@@ -4181,6 +4188,19 @@ th,td {
     background: white !important;
   }
 </style>
+<script>
+   function validateForm() {
+   
+    var remarkValue = document.forms["myForm"]["remark"].value;
+    if (remarkValue.trim() === "") {
+      alert("Please enter an overall remark.");
+      return false;
+    }
+
+   
+
+   }
+  </script>
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -4208,4 +4228,19 @@ $(document).ready(function() {
      
 });
 </script>
+<script>
+    $(document).ready(function() {
+        // Hide success message after 5 seconds
+        setTimeout(function() {
+            $('.alert-success').fadeOut('slow');
+        }, 5000);
+    });
+</script>
+
+
+
+
+
+
+
 <?php echo $__env->make('admin::layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/sraservices/Modules/Admin/Resources/views/sra/election.blade.php ENDPATH**/ ?>

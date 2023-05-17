@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
 @extends('admin::layout')
 
 @component('admin::include.page.header')
@@ -90,7 +95,7 @@
     td {
         border-bottom: none !important;
         height: 30px !important;
-        font-size:16px !important;
+        font-size:18px !important;
     }
     h4{
       font-size:18px !important;
@@ -142,7 +147,7 @@
                         </div>
                         <div class="tab">
                             <input type="radio" name="css-tabs" id="tab-5" class="tab-switch">
-                            <a href="#" class="tab-label" style="color:#495057!important; font-size:18px !important;
+                            <a href="index.php/sra/photopass/{{ $hid }}" class="tab-label" style="color:#495057!important; font-size:18px !important;
                             ">Photo Pass Details</a>
                             <div class="tab-content">Photo Pass Details</div>
                         </div>
@@ -155,7 +160,7 @@
                         </div>
                         <div class="tab">
                 <input type="radio" name="css-tabs" id="tab-8" class="tab-switch">
-                <a href="index.php/sra/adhar/{{$hid}}" class="tab-label" style="color:#495057!important;font-size:16px !important;">Aadhar Card</a>
+                <a href="index.php/sra/adhar/{{$hid}}" class="tab-label" style="color:#495057!important;font-size:16px !important;">Aadhaar Card</a>
                 <div class="tab-content">Registration Agreement Details</div>
               </div>
                         <div class="tab">
@@ -168,8 +173,9 @@
                                     <table class="table table-borderless table-responsive">
                                       <thead>
                                           <tr>
+                                        <th>Cluster ID</th>
                                           <th>Hut ID</th>
-                                          <th>Cluster ID</th>
+                                        
                                           <th>Scheme Name</th>
                                           <th>Owner Name</th>
                                           <th>Address</th>
@@ -184,9 +190,10 @@
                                       <tbody>
                                         <tr>
                                           @foreach($query as $data)
+                                          <td>{{$data->ClusterId}}</td>
                                             <td>{{$data->HUTSURVERYID}}</td>
                                             <?php $hid = $data->HUTSURVERYID ?>
-                                            <td>{{$data->ClusterId}}</td>
+                                            
                                             <td>{{$data->SchemeName}}</td>
                                             <td>{{$data->HUTOWNERNAME}}</td>
                                             <td>{{$data->Address}}</td>
@@ -708,7 +715,7 @@
 
                                                         </tr>
                                                         <tr>
-                                                            <td style="width:90px;"><b>Aadhar </b>
+                                                            <td style="width:90px;"><b>Aadhaar </b>
                                                                
                                                             </td>
                                                            <td style="width:1px;">:</td>
@@ -748,7 +755,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             @hasAccess('admin.sra.ca_remark')
-                                            <form method="POST" action="{{ route('admin.sra.final_ca_submit') }}">
+                                            <form method="POST" action="{{ route('admin.sra.final_ca_submit') }}" >
                                                  @csrf
                                                 <input type="hidden" id="hut_id" name="hut_id" value="<?= $hid ?>"
                                                     required>
@@ -818,7 +825,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Overall Recommendation:</label>
-                                                    <select class='form-control' name="status" style="width:30%;">
+                                                    <select class='form-control' name="status" style="width:30%;" required>
 
                                                         <?php if($status == 0){ ?>
                                                         <option value="0" selected="">-- Select Status --</option>
@@ -851,7 +858,7 @@
                                                 <div class="form-group">
                                                     <label>Final Remark:</label>
                                                     <?php if($remark == ""){ ?>
-                                                    <textarea class='form-control' name='remark' id='remark'>{{ $final_remark }}</textarea>
+                                                    <textarea class='form-control' name='remark' id='remark' required>{{ $final_remark }}</textarea>
                                                     <?php } else{ ?>
                                                     <textarea class='form-control' name='remark' id='remark'>{{ $remark }}</textarea>
                                                     <?php } ?>
@@ -871,7 +878,7 @@
                                             @endHasAccess
 
                                             @hasAccess('admin.sra.vendor_remark')
-                                            <form method="POST" action="{{ route('admin.sra.final_submit') }}">
+                                            <form method="POST" action="{{ route('admin.sra.final_submit') }}" >
                                                  @csrf
                                                 <input type="hidden" id="hut_id" name="hut_id" value="<?= $hid ?>"
                                                     required>
@@ -893,7 +900,7 @@
 
                                                 <div class="form-group">
                                                     <label>Overall Recommendation::</label>
-                                                    <select class='form-control' name="status" style="width:30%;">
+                                                    <select class='form-control' name="status" style="width:30%;" required>
 
                                                         <?php if($status == 0){ ?>
                                                         <option value="0" selected="">-- Select Status --</option>
@@ -926,7 +933,7 @@
                                                 <div class="form-group">
                                                     <label>Final Remark:</label>
                                                     <?php if($remark == ""){ ?>
-                                                    <textarea class='form-control' name='remark' id='remark'></textarea>
+                                                    <textarea class='form-control' name='remark' id='remark' required></textarea>
                                                     <?php } else{ ?>
                                                     <textarea class='form-control' name='remark' id='remark'>{{ $remark }}</textarea>
                                                     <?php } ?>
@@ -981,3 +988,17 @@
         background: white !important;
     }
 </style>
+<script>
+    $(document).ready(function() {
+        // Hide success message after 5 seconds
+        setTimeout(function() {
+            $('.alert-success').fadeOut('slow');
+        }, 5000);
+    });
+</script>
+
+
+
+
+
+

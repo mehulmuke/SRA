@@ -41,6 +41,7 @@ return [
         'storeremark_adhar' => 'admin::permissions.sra.storeremark_adhar',
         'storemanualdata_adhar' => 'admin::permissions.sra.storemanualdata_adhar',
         'work_status' => 'admin::permissions.sra.work_status',
+        'photopass' => 'Photopass',
 
 
     ],

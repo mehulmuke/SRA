@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
 @extends('admin::layout')
 
 @component('admin::include.page.header')
@@ -145,6 +150,7 @@
 th ,td {
       border-bottom:none !important;
       height: 30px !important;
+      font-size:18px !important;
     }
 
 
@@ -268,7 +274,7 @@ th ,td {
 th,td {
         border-bottom: none !important;
         height: 30px !important;
-        font-size:16px !important;
+        
     }
     h4{
       font-size:18px !important;
@@ -322,7 +328,7 @@ th,td {
               </div>
               <div class="tab">
                 <input type="radio" name="css-tabs" id="tab-4" class="tab-switch">
-                <a href="#" class="tab-label" style="color:#495057!important;font-size:16px !important;">Photo Pass Details</a>
+                <a href="index.php/sra/photopass/{{ $hid }}" class="tab-label" style="color:#495057!important;font-size:16px !important;">Photo Pass Details</a>
                 <div class="tab-content">Photo Pass Details</div>
               </div>
               <div class="tab">
@@ -334,8 +340,9 @@ th,td {
                                 <table class="table table-borderless table-responsive">
                                   <thead>
                                       <tr>
+                                    <th>Cluster ID</th>
                                       <th>Hut ID</th>
-                                      <th>Cluster ID</th>
+                                      
                                       <th>Scheme Name</th>
                                       <th>Owner Name</th>
                                       <th>Address</th>
@@ -350,9 +357,9 @@ th,td {
                                   <tbody>
                                     <tr>
                                       @foreach($query as $data)
+                                      <td>{{$data->ClusterId}}</td>
                                         <td>{{$data->HUTSURVERYID}}</td>
                                         <?php $hid = $data->HUTSURVERYID ?>
-                                        <td>{{$data->ClusterId}}</td>
                                         <td>{{$data->SchemeName}}</td>
                                         <td>{{$data->HUTOWNERNAME}}</td>
                                         <td>{{$data->Address}}</td>
@@ -895,6 +902,7 @@ th,td {
                                 <div class="card">
                                   <div class="card-body">
                                     <div class="table-responsive" id="sra-table">
+                                      <?php if(count($query_data2) > 0){ ?>
                                       <table class="table table-borderless table-responsive">
                                         <thead>
                                             <tr>
@@ -907,7 +915,7 @@ th,td {
                                               </tr>
                                         </thead>
                                         <tbody>
-                                          <?php if(count($query_data2) > 0){ ?>
+                                         
                                             <tr>
                                                         <td width="10%"><?php echo $query_data2[0]->sr_no; ?></td>
                                                         <td width="10%"><?php echo $query_data2[0]->document; ?></td>
@@ -933,40 +941,54 @@ th,td {
                                                         <td width="10%"><?php echo $query_data2[2]->relationship; ?></td>
                                                     </tr>
                                           <?php }else {?>
-                                          <form method="POST" enctype="multipart/form-data" action="{{ route('admin.sra.storemanualdata_agreement') }}">
-                                          @csrf
-                                          <input type="hidden" id="hut_id" name="hut_id" value=<?= $hid; ?> required>
-                                          <input type="hidden" id="year" name="year" value="1">
-                                                    <tr>
-                                                        <td width="10%"><input type="text" class="form-control"  name="sr_no1"><br/></td>
-                                                        <td width="10%"><input type="text" class="form-control"  name="type_doc1"><br/></td>
-                                                        <td width="20%"><input type="text" class="form-control"  name="agg_date1"><br/></td>
-                                                        <td width="20%"><input type="text" class="form-control"  name="name_seller1"><br/></td>
-                                                        <td width="10%"><input type="text" class="form-control"  name="name_purchaser1"><br/></td>
-                                                        <td width="10%"><input type="text" class="form-control"  name="relationship1"><br/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="10%"><input type="text" class="form-control"  name="sr_no2"><br/></td>
-                                                        <td width="10%"><input type="text" class="form-control"  name="type_doc2"><br/></td>
-                                                        <td width="20%"><input type="text" class="form-control"  name="agg_date2"><br/></td>
-                                                        <td width="20%"><input type="text" class="form-control"  name="name_seller2"><br/></td>
-                                                        <td width="10%"><input type="text" class="form-control"  name="name_purchaser2"><br/></td>
-                                                        <td width="10%"><input type="text" class="form-control"  name="relationship2"><br/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="10%"><input type="text" class="form-control"  name="sr_no3"><br/></td>
-                                                        <td width="10%"><input type="text" class="form-control"  name="type_doc3"><br/></td>
-                                                        <td width="20%"><input type="text" class="form-control"  name="agg_date3"><br/></td>
-                                                        <td width="20%"><input type="text" class="form-control"  name="name_seller3"><br/></td>
-                                                        <td width="10%"><input type="text" class="form-control"  name="name_purchaser3"><br/></td>
-                                                        <td width="10%"><input type="text" class="form-control"  name="relationship3"><br/></td>
-                                                    </tr>
-                                                    <tr>
-                                                       @hasAccess('admin.sra.vendor_remark')
-                                                        <td colspan="5"><button id="submitBtn2000" type ="submit" class="btn btn-primary ml-auto btn-actions btn-create">Manual Data</button></td>
-                                                        @endHasAccess
-                                                      </tr>
+                                            <form method="POST" enctype="multipart/form-data" action="{{ route('admin.sra.storemanualdata_agreement') }}">
+                                              @csrf
+                                              <input type="hidden" id="hut_id" name="hut_id" value=<?= $hid; ?> required>
+                                              <input type="hidden" id="year" name="year" value="1">
+                                              <table id="manual-data-table">
+                                                  <tr>
+                                                      <th width="10%">#</th>
+                                                      <th width="10%">Type</th>
+                                                      <th width="20%">Date</th>
+                                                      <th width="20%">Seller</th>
+                                                      <th width="10%">Purchaser</th>
+                                                      <th width="10%">Relationship</th>
+                                                  </tr>
+                                                  <tr class="manual-data-row">
+                                                      <td width="10%"><input type="text" class="form-control" name="sr_no1"></td>
+                                                      <td width="10%"><input type="text" class="form-control" name="type_doc1"></td>
+                                                      <td width="20%"><input type="text" class="form-control" name="agg_date1"></td>
+                                                      <td width="20%"><input type="text" class="form-control" name="name_seller1"></td>
+                                                      <td width="10%"><input type="text" class="form-control" name="name_purchaser1"></td>
+                                                      <td width="10%"><input type="text" class="form-control" name="relationship1"></td>
+                                                  </tr>
+                                              </table>
+                                              <br>
+                                              <button type="button" class="btn btn-primary" id="add-row-btn">Add More</button>
+                                              @hasAccess('admin.sra.vendor_remark')
+                                                  <button id="submitBtn2000" type="submit" class="btn btn-primary ml-auto btn-actions btn-create">Manual Data</button>
+                                              @endHasAccess
                                           </form>
+                                          
+                                          <script>
+                                              $(document).ready(function () {
+                                                  var rowNumber = 1;
+                                          
+                                                  $('#add-row-btn').click(function () {
+                                                      var newRowHtml = '<tr class="manual-data-row">'
+                                                              + '<td><input type="text" class="form-control" name="sr_no' + (rowNumber + 1) + '"></td>'
+                                                              + '<td><input type="text" class="form-control" name="type_doc' + (rowNumber + 1) + '"></td>'
+                                                              + '<td><input type="text" class="form-control" name="agg_date' + (rowNumber + 1) + '"></td>'
+                                                              + '<td><input type="text" class="form-control" name="name_seller' + (rowNumber + 1) + '"></td>'
+                                                              + '<td><input type="text" class="form-control" name="name_purchaser' + (rowNumber + 1) + '"></td>'
+                                                              + '<td><input type="text" class="form-control" name="relationship' + (rowNumber + 1) + '"></td>'
+                                                              + '</tr>';
+                                                      $('#manual-data-table').append(newRowHtml);
+                                                      rowNumber++;
+                                                  });
+                                              });
+                                          </script>
+                                          
                                         <?php } ?>
                                         </tbody>
                                       </table>
@@ -1088,48 +1110,112 @@ th,td {
                                     </td>
                                    <?php } else { ?>
                                 <td width="10%">
-                                 
+                                <?php
+                                  if(isset($highestPercentageOfSrno) && $highestPercentageOfSrno == 100)
+                                    {
+                                      ?>
+                                        <input type="text" class="form-control" name="elg1" value="Auto" readyonly>
+                                      <?php
+                                    }else{
+                                      ?>
                                 <select name="elg1" class="form-control" style="padding: 2px 1rem !important;">
                                     <option value="0">-- Select Option --</option>
                                     <option value="1" {{ isset($highestPercentageOfSrno) && $highestPercentageOfSrno < 100 ? 'selected' : '' }}>Manual</option>
                                     <option value="2" {{ isset($highestPercentageOfSrno) && $highestPercentageOfSrno == 100 ? 'selected' : '' }}>Auto</option>
                                 </select>
+                                <?php
+                                  }
+                                ?>
                                 </td>
                                 <td width="10%">
+                                <?php
+                                  if(isset($highestPercentageOfDoc) && $highestPercentageOfDoc == 100)
+                                    {
+                                      ?>
+                                        <input type="text" class="form-control" name="elg2" value="Auto" readyonly>
+                                      <?php
+                                    }else{
+                                      ?>
                                 <select name="elg2" class="form-control" style="padding: 2px 1rem !important;">
                                     <option value="0">-- Select Option --</option>
                                     <option value="1" {{ isset($highestPercentageOfDoc) && $highestPercentageOfDoc < 100 ? 'selected' : '' }}>Manual</option>
                                     <option value="2" {{ isset($highestPercentageOfDoc) && $highestPercentageOfDoc == 100 ? 'selected' : '' }}>Auto</option>
                                 </select>
+                                <?php
+                                  }
+                                ?>
                                 </td>
                                 <td width="10%">
+                                <?php
+                                  if(isset($highestPercentageOfDate) && $highestPercentageOfDate == 100)
+                                    {
+                                      ?>
+                                        <input type="text" class="form-control" name="elg3" value="Auto" readyonly>
+                                      <?php
+                                    }else{
+                                      ?>
                                 <select name="elg3" class="form-control" style="padding: 2px 1rem !important;">
                                     <option value="0">-- Select Option --</option>
                                     <option value="1" {{ isset($highestPercentageOfDate) && $highestPercentageOfDate < 100 ? 'selected' : '' }}>Manual</option>
                                     <option value="2" {{ isset($highestPercentageOfDate) && $highestPercentageOfDate == 100 ? 'selected' : '' }}>Auto</option>
                                 </select>
+                                <?php
+                                  }
+                                ?>
                                 </td>
                                 <td width="10%">
+                                <?php
+                                  if(isset($highestPercentageOfSname) && $highestPercentageOfSname == 100)
+                                    {
+                                      ?>
+                                        <input type="text" class="form-control" name="elg4" value="Auto" readyonly>
+                                      <?php
+                                    }else{
+                                      ?>
                                 <select name="elg4" class="form-control" style="padding: 2px 1rem !important;">
                                     <option value="0">-- Select Option --</option>
                                     <option value="1" {{ isset($highestPercentageOfSname) && $highestPercentageOfSname < 100 ? 'selected' : '' }}>Manual</option>
                                     <option value="2"  {{ isset($highestPercentageOfSname) && $highestPercentageOfSname == 100 ? 'selected' : '' }}>Auto</option>
                                 </select>
+                                <?php
+                                    }
+                                ?>
                                 </td>
                                 <td width="10%">
+                                <?php
+                                  if(isset($highestPercentageOfPname) && $highestPercentageOfPname == 100)
+                                    {
+                                      ?>
+                                        <input type="text" class="form-control" name="elg5" value="Auto" readyonly>
+                                      <?php
+                                    }else{
+                                      ?>
                                 <select name="elg5" class="form-control" style="padding: 2px 1rem !important;">
                                     <option value="0">-- Select Option --</option>
                                     <option value="1" {{ isset($highestPercentageOfPname) && $highestPercentageOfPname < 100 ? 'selected' : '' }}>Manual</option>
                                     <option value="2" {{ isset($highestPercentageOfPname) && $highestPercentageOfPname == 100 ? 'selected' : '' }}>Auto</option>
                                 </select>
+                                <?php
+                                    }
+                                ?>
                                 </td>
                                 <td width="10%">
+                                <?php
+                                  if(isset($highestPercentageOfRname) && $highestPercentageOfRname == 100)
+                                    {
+                                      ?>
+                                        <input type="text" class="form-control" name="elg6" value="Auto" readyonly>
+                                      <?php
+                                    }else{
+                                      ?>
                                 <select name="elg6" class="form-control" style="padding: 2px 1rem !important;">
                                     <option value="0">-- Select Option --</option>
                                     <option value="1" {{ isset($highestPercentageOfRname) && $highestPercentageOfRname < 100 ? 'selected' : '' }}>Manual</option>
                                     <option value="2" {{ isset($highestPercentageOfRname) && $highestPercentageOfRname == 100 ? 'selected' : '' }}>Auto</option>
                                 </select>
-                             
+                                <?php
+                                    }
+                                ?>
                                 </td>
                                  <?php } ?>
                               </tr>
@@ -1147,12 +1233,12 @@ th,td {
                                 <td width="10%">{{ isset($query_data[0]->remark_relationship)?$query_data[0]->remark_relationship:''}}</td>
                                 <?php }else { ?>
 
-                                <td width="10%"><input type="text" class="form-control"  name="remark1" value="{{ isset($query_data[0]->remark_srno)?$query_data[0]->remark_srno:''}}" ></td>
-                                <td width="10%"><input type="text" class="form-control"  name="remark2" value="{{ isset($query_data[0]->remark_type)?$query_data[0]->remark_type:''}}" ></td>
-                                <td width="20%"><input type="text" class="form-control"  name="remark3" value="{{ isset($query_data[0]->remark_aggrement_date)?$query_data[0]->remark_aggrement_date:''}}" ></td>
-                                <td width="20%"><input type="text" class="form-control"  name="remark4" value="{{ isset($query_data[0]->remark_seller_name)?$query_data[0]->remark_seller_name:''}}" ></td>
-                                <td width="10%"><input type="text" class="form-control"  name="remark5" value="{{ isset($query_data[0]->remark_purchaser_name)?$query_data[0]->remark_purchaser_name:''}}" ></td>
-                                <td width="10%"><input type="text" class="form-control"  name="remark6" value="{{ isset($query_data[0]->remark_relationship)?$query_data[0]->remark_relationship:''}}" ></td>
+                                <td width="10%"><input type="text" class="form-control"  name="remark1" value="{{ isset($query_data[0]->remark_srno)?$query_data[0]->remark_srno:''}}" required></td>
+                                <td width="10%"><input type="text" class="form-control"  name="remark2" value="{{ isset($query_data[0]->remark_type)?$query_data[0]->remark_type:''}}" required></td>
+                                <td width="20%"><input type="text" class="form-control"  name="remark3" value="{{ isset($query_data[0]->remark_aggrement_date)?$query_data[0]->remark_aggrement_date:''}}" required></td>
+                                <td width="20%"><input type="text" class="form-control"  name="remark4" value="{{ isset($query_data[0]->remark_seller_name)?$query_data[0]->remark_seller_name:''}}" required></td>
+                                <td width="10%"><input type="text" class="form-control"  name="remark5" value="{{ isset($query_data[0]->remark_purchaser_name)?$query_data[0]->remark_purchaser_name:''}}" required></td>
+                                <td width="10%"><input type="text" class="form-control"  name="remark6" value="{{ isset($query_data[0]->remark_relationship)?$query_data[0]->remark_relationship:''}}" required></td>
                                 <?php } ?>
 
                               </tr>
@@ -1163,8 +1249,8 @@ th,td {
                             <td ><b>Section Status :</b></td>
                             <td ><b>Section Remark :</b></td>
                             <?php
-                            if(count($documents)>0){
-                              $remark = "Agreement Document with Dated ".$documents[0]->aggrement_date. "with seller " .$documents[0]->seller_name. " and purcharser ".$documents[0]->purchaser_name;
+                          if(isset($highestPercentagepname) && isset($highestPercentagesname) && isset($highestPercentagedate) ){
+                              $remark = "Agreement Document with Dated ".$highestPercentagedate. " with seller " .$highestPercentagesname. " and purcharser ".$highestPercentagepname;
                           }else{
                               $remark = "";
                           }
@@ -1340,46 +1426,112 @@ th,td {
                                     </td>
                                    <?php } else { ?>
                                 <td width="10%">
-                                <select name="elg1" class="form-control" style="padding: 2px 1rem !important;">
-                                    <option value="0">-- Select Option --</option>
-                                    <option value="1" {{ isset($highestPercentageOfSrno) && $highestPercentageOfSrno < 100 ? 'selected' : '' }}>Manual</option>
-                                    <option value="2" {{ isset($highestPercentageOfSrno) && $highestPercentageOfSrno == 100 ? 'selected' : '' }}>Auto</option>
-                                </select>
+                                <?php
+                                  if(isset($highestPercentageOfSrno) && $highestPercentageOfSrno == 100)
+                                    {
+                                      ?>
+                                        <input type="text" class="form-control" name="elg1" value="Auto" readyonly>
+                                      <?php
+                                    }else{
+                                      ?>
+                                      <select name="elg1" class="form-control" style="padding: 2px 1rem !important;">
+                                          <option value="0">-- Select Option --</option>
+                                          <option value="1" {{ isset($highestPercentageOfSrno) && $highestPercentageOfSrno < 100 ? 'selected' : '' }}>Manual</option>
+                                          <option value="2" {{ isset($highestPercentageOfSrno) && $highestPercentageOfSrno == 100 ? 'selected' : '' }}>Auto</option>
+                                      </select>
+                                    <?php
+                                    }
+                                    ?>
                                 </td>
                                 <td width="10%">
+                                  <?php
+                                if(isset($highestPercentageOfDoc) && $highestPercentageOfDoc == 100)
+                                    {
+                                      ?>
+                                        <input type="text" class="form-control" name="elg2" value="Auto" readyonly>
+                                      <?php
+                                    }else{
+                                      ?>
                                 <select name="elg2" class="form-control" style="padding: 2px 1rem !important;">
                                     <option value="0">-- Select Option --</option>
                                     <option value="1" {{ isset($highestPercentageOfDoc) && $highestPercentageOfDoc < 100 ? 'selected' : '' }}>Manual</option>
                                     <option value="2" {{ isset($highestPercentageOfDoc) && $highestPercentageOfDoc == 100 ? 'selected' : '' }}>Auto</option>
                                 </select>
+                                <?php
+                                    }
+                                ?>
                                 </td>
                                 <td width="10%">
+                                <?php
+                                if(isset($highestPercentageOfDate) && $highestPercentageOfDate == 100)
+                                    {
+                                      ?>
+                                        <input type="text" class="form-control" name="elg3" value="Auto" readyonly>
+                                      <?php
+                                    }else{
+                                      ?>
                                 <select name="elg3" class="form-control" style="padding: 2px 1rem !important;">
                                     <option value="0">-- Select Option --</option>
                                     <option value="1" {{ isset($highestPercentageOfDate) && $highestPercentageOfDate < 100 ? 'selected' : '' }}>Manual</option>
                                     <option value="2" {{ isset($highestPercentageOfDate) && $highestPercentageOfDate == 100 ? 'selected' : '' }}>Auto</option>
                                 </select>
+                                <?php
+                                    }
+                                ?>
                                 </td>
                                 <td width="10%">
+                                <?php
+                                if(isset($highestPercentageOfSname) && $highestPercentageOfSname == 100)
+                                    {
+                                      ?>
+                                        <input type="text" class="form-control" name="elg4" value="Auto" readyonly>
+                                      <?php
+                                    }else{
+                                      ?>
                                 <select name="elg4" class="form-control" style="padding: 2px 1rem !important;">
                                     <option value="0">-- Select Option --</option>
                                     <option value="1" {{ isset($highestPercentageOfSname) && $highestPercentageOfSname < 100 ? 'selected' : '' }}>Manual</option>
                                     <option value="2"  {{ isset($highestPercentageOfSname) && $highestPercentageOfSname == 100 ? 'selected' : '' }}>Auto</option>
                                 </select>
+                                <?php
+                                    }
+                                ?>
                                 </td>
                                 <td width="10%">
+                                <?php
+                                if(isset($highestPercentageOfPname) && $highestPercentageOfPname == 100)
+                                    {
+                                      ?>
+                                        <input type="text" class="form-control" name="elg5" value="Auto" readyonly>
+                                      <?php
+                                    }else{
+                                      ?>
                                 <select name="elg5" class="form-control" style="padding: 2px 1rem !important;">
                                     <option value="0">-- Select Option --</option>
                                     <option value="1" {{ isset($highestPercentageOfPname) && $highestPercentageOfPname < 100 ? 'selected' : '' }}>Manual</option>
                                     <option value="2" {{ isset($highestPercentageOfPname) && $highestPercentageOfPname == 100 ? 'selected' : '' }}>Auto</option>
                                 </select>
+                                <?php
+                                    }
+                                ?>
                                 </td>
                                 <td width="10%">
+                                <?php
+                                if(isset($highestPercentageOfRname) && $highestPercentageOfRname == 100)
+                                    {
+                                      ?>
+                                        <input type="text" class="form-control" name="elg6" value="Auto" readyonly>
+                                      <?php
+                                    }else{
+                                      ?>
                                 <select name="elg6" class="form-control" style="padding: 2px 1rem !important;">
                                     <option value="0">-- Select Option --</option>
                                     <option value="1" {{ isset($highestPercentageOfRname) && $highestPercentageOfRname < 100 ? 'selected' : '' }}>Manual</option>
                                     <option value="2" {{ isset($highestPercentageOfRname) && $highestPercentageOfRname == 100 ? 'selected' : '' }}>Auto</option>
                                 </select>
+                                <?php
+                                }
+                                ?>
                                 </td>
                               <?php } ?>
                               </tr>
@@ -1396,12 +1548,12 @@ th,td {
                                 <td width="10%">{{ isset($recomm_remarks_ca[0]->remark_purchaser_name)?$recomm_remarks_ca[0]->remark_purchaser_name:''}}</td>
                                 <td width="10%">{{ isset($recomm_remarks_ca[0]->remark_relationship)?$recomm_remarks_ca[0]->remark_relationship:''}}</td>
                                 <?php }else { ?>
-                                <td width="10%"><input type="text" class="form-control"  name="remark1_ca" value="{{ isset($recomm_remarks_ca[0]->remark_srno)?$recomm_remarks_ca[0]->remark_srno:''}}" ></td>
-                                <td width="10%"><input type="text" class="form-control"  name="remark2_ca" value="{{ isset($recomm_remarks_ca[0]->remark_type)?$recomm_remarks_ca[0]->remark_type:''}}" ></td>
-                                <td width="20%"><input type="text" class="form-control"  name="remark3_ca" value="{{ isset($recomm_remarks_ca[0]->remark_aggrement_date)?$recomm_remarks_ca[0]->remark_aggrement_date:''}}" ></td>
-                                <td width="20%"><input type="text" class="form-control"  name="remark4_ca" value="{{ isset($recomm_remarks_ca[0]->remark_seller_name)?$recomm_remarks_ca[0]->remark_seller_name:''}}" ></td>
-                                <td width="10%"><input type="text" class="form-control"  name="remark5_ca" value="{{ isset($recomm_remarks_ca[0]->remark_purchaser_name)?$recomm_remarks_ca[0]->remark_purchaser_name:''}}" ></td>
-                                <td width="10%"><input type="text" class="form-control"  name="remark6_ca" value="{{ isset($recomm_remarks_ca[0]->remark_relationship)?$recomm_remarks_ca[0]->remark_relationship:''}}" ></td>
+                                <td width="10%"><input type="text" class="form-control"  name="remark1_ca" value="{{ isset($recomm_remarks_ca[0]->remark_srno)?$recomm_remarks_ca[0]->remark_srno:''}}" required></td>
+                                <td width="10%"><input type="text" class="form-control"  name="remark2_ca" value="{{ isset($recomm_remarks_ca[0]->remark_type)?$recomm_remarks_ca[0]->remark_type:''}}" required></td>
+                                <td width="20%"><input type="text" class="form-control"  name="remark3_ca" value="{{ isset($recomm_remarks_ca[0]->remark_aggrement_date)?$recomm_remarks_ca[0]->remark_aggrement_date:''}}" required></td>
+                                <td width="20%"><input type="text" class="form-control"  name="remark4_ca" value="{{ isset($recomm_remarks_ca[0]->remark_seller_name)?$recomm_remarks_ca[0]->remark_seller_name:''}}" required></td>
+                                <td width="10%"><input type="text" class="form-control"  name="remark5_ca" value="{{ isset($recomm_remarks_ca[0]->remark_purchaser_name)?$recomm_remarks_ca[0]->remark_purchaser_name:''}}" required></td>
+                                <td width="10%"><input type="text" class="form-control"  name="remark6_ca" value="{{ isset($recomm_remarks_ca[0]->remark_relationship)?$recomm_remarks_ca[0]->remark_relationship:''}}" required></td>
                               <?php } ?>
 
                               </tr>
@@ -1491,7 +1643,7 @@ th,td {
                               <div class="card-body">
                                 <div class="table-responsive" id="sra-table">
                                   <table class="table table-borderless table-responsive">
-                                    <form method="post" enctype="multipart/form-data" action="{{ route('admin.sra.store_overall_remark') }}">
+                                    <form method="post" enctype="multipart/form-data" action="{{ route('admin.sra.store_overall_remark') }}" name="myForm" id="myForm" onsubmit="return validateForm();">
                                     @csrf
                                     <input type="hidden" name="hutid" value="<?php echo $hid;?>">
                                     <input type="hidden" name="user" value="{{auth()->user()->id}}">
@@ -1500,7 +1652,7 @@ th,td {
                                       <td>
                                         <div class="form-group">
                                         <label>Status:</label>
-                                        <select name="elg" class="form-control">
+                                        <select name="elg" class="form-control" required>
                                           <?php if(count($overall_remark) == 0){ ?>
                                              <option value="0">-- Select Option --</option>
                                              <option value="1" >Verified</option>
@@ -1543,7 +1695,7 @@ th,td {
                                         <div class="form-group">
                                         <label>Remark:</label>
                                         <?php if(count($overall_remark) == 0){ ?>
-                                          <textarea name="remark" cols="100" class="form-control"> </textarea>
+                                          <textarea name="remark" cols="100" class="form-control" required> </textarea>
                                         <?php }else{ ?>
                                            <textarea name="remark" cols="100" class="form-control">{{$overall_remark[0]->agreement_remark}}</textarea>
                                         <?php } ?>
@@ -1708,3 +1860,31 @@ $(document).ready(function() {
      
 });
 </script>
+<!-- Warning Msg Script -->
+<script>
+   function validateForm() {
+   
+    var remarkValue = document.forms["myForm"]["remark"].value;
+    if (remarkValue.trim() === "") {
+      alert("Please enter an overall remark.");
+      return false;
+    }
+
+   
+
+   }
+  </script>
+  <script>
+    $(document).ready(function() {
+        // Hide success message after 5 seconds
+        setTimeout(function() {
+            $('.alert-success').fadeOut('slow');
+        }, 5000);
+    });
+</script>
+
+
+
+
+
+

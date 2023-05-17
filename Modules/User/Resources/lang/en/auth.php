@@ -20,5 +20,5 @@ return [
     'last_name' => 'Last Name',
     'password_confirmation' => 'Confirm Password',
     'cancel' => 'Cancel',
-    
+    'username'=>'Username',
 ];

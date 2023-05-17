@@ -12,6 +12,7 @@ return [
         'invalid_reset_code' => 'Invalid or expired reset code.',
         'password_has_been_reset' => 'Password has been reset. You can now login with your new password.',
         'reset_password_email_sent' => 'Reset password email sent.',
+        'invalid_credentials' => 'Invalid username or password.',
     ],
     'email' => [
         'reset_password' => 'Reset your account password.',

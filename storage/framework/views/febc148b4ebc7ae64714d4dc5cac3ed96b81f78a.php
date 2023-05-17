@@ -4,9 +4,12 @@
   font-family: 'Times New Roman', Times, serif !important;
  
 }
-
-
+div label {
+    color: #495057 !important;
+    font-size: 18px !important;
+}
 </style>
+
 
 <head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -26,8 +29,9 @@
                                 <table class="table table-borderless table-responsive">
                                   <thead>
                                         <tr>
+                                        <th>Cluster ID</th>
                                       <th>Hut ID</th>
-                                      <th>Cluster ID</th>
+                                      
                                       <th>Scheme Name</th>
                                       <th>Owner Name</th>
                                       <th>Address</th>
@@ -41,9 +45,10 @@
                                   <tbody>
                                     <tr>
                                       <?php $__currentLoopData = $query; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                      <td><?php echo e($data->ClusterId); ?></td>
                                         <td><?php echo e($data->HUTSURVERYID); ?></td>
                                         <?php $hid = $data->HUTSURVERYID ?>
-                                        <td><?php echo e($data->ClusterId); ?></td>
+                                        
                                         <td><?php echo e($data->SchemeName); ?></td>
                                         <td><?php echo e($data->HUTOWNERNAME); ?></td>
                                         <td><?php echo e($data->Address); ?></td>
@@ -426,6 +431,7 @@
                             }
                             imageInputId.style.display = 'block';
                             imageInputlabel.style.display = 'block';
+                            
                         } else {
 
                             if (this.id == 'Voting Card') {

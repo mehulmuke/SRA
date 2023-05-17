@@ -938,7 +938,7 @@ public function work_status(Request $request, $status)
                 $arrears = $json_decoded->ARREARS;
 
                 if ($arrears > 100) {
-                    echo "<script>alert('You have pending Arrears Amount $arrears. Please pay first.')</script>";
+                    echo "<script>alert('You have Pending Arrears Amount $arrears Rs . Please pay first.')</script>";
                 }
                 foreach($json_decoded as $key => $result){
                     $new_result[$key] = $result;
@@ -3796,8 +3796,24 @@ public function store_overall_remark(Request $request)
             return redirect()->route('admin.sra.electricity', ['hid' => $hutId])->with('message', 'Remark Added Successfully!');
          }
          if($type == "photopass"){
+            if($chk_data > 0){
+                DB::table('sims_master_detail')
+                ->where('hut_id', $hutId)
+                ->update(['status' => '1']);
+             }else{
+                  DB::table('sims_master_detail')->insert([
+                        'hut_id'=>$hutId,
+                        'user_id'=>$user,
+                        'photopass_status' => $elg,
+                        'photopass_remark' => $remark,
+                        'created_at'=>NOW(),
+                        
+                ]);
+                return redirect()->route("http://sra-uat.apniamc.in/index.php/sra/photopass", [$hid])->with('message', 'Data updated!');
 
          }
+        }
+
          /*if
          if($chk_data > 0){
             DB::table('sims_master_detail')
@@ -4368,6 +4384,193 @@ public function store_overall_remark(Request $request)
 
         return redirect()->route('admin.sra.adhar', ['hid' => $hutId])->with('message', 'Data updated!');   
        // return redirect()->route('admin.sra.index')->with('status', 'Data added!');
+
+    }
+
+    public function photopass($hid)
+    {
+
+
+
+
+        // Query the database to retrieve the data for the table
+        $query =DB::connection('simconn')->table('T_HUTOWNERINFODETAILS as h')
+        ->join('M_Cluster as p', 'p.ClusterCode', '=', 'h.CLUSTERID')
+        ->join('M_PropertyType as t', 't.PropertyTypeId', '=', 'h.PropertyTypeId')
+        ->leftJoin('M_Scheme as s', 's.SchemeNO', '=', 'h.SCHEMEID')
+        ->select('h.HUTSURVERYID', 'p.ClusterId', DB::raw("ISNULL(s.SchemeName, '') as SchemeName"),
+        DB::raw("CONCAT(h.HFNAME, ' ', h.HMNAME, ' ', h.HLNAME) as HUTOWNERNAME"), 'h.hutOwner_Current_Address as Address',
+        't.PropertyType', 'h.FLOORNUM','h.HUTLENGTH', 'h.HUTWIDTH', DB::raw('h.HUTLENGTH * h.HUTWIDTH as Area'))->where('HUTSURVERYID', '=', $hid)->get();
+
+
+        $query1 = DB::connection('simconn')
+            ->table('T_ImageDocumentsChild')
+            ->select('DocumentContent','DOCCategory')
+            ->where('HUTSURVERYID', '=', $hid)
+             ->where('DOCCategory','DOC3')
+            ->get();
+
+            $query_data = DB::table('recommendation_photopass')
+            ->select('*')
+            ->where('hut_id', '=', $hid)
+            ->get();
+
+            $query3 = DB::table('survey_receipt_document')
+            ->select('*')
+            ->where('hut_id', '=', $hid)
+            ->get();
+    $applicationNo = "";
+    $name ="";
+
+    if(count($query3)>0){
+        $applicationNo = $query3[0]->survey_receipt_no;
+        $name = $query3[0]->name_as_per_survey_receipt;
+    }
+
+    if ($applicationNo !== "") {
+        $results = DB::connection('simconn1')->table('tblSlumOwnerMst1 as a')
+                    // ->join('tblRelationWithHead1 as b', 'a.ApplicationNo', '=', 'b.ApplicationNo')
+                    ->join('tblOfficeUseImage as c', 'c.ApplicationNo', '=', 'a.ApplicationNo')
+                    // ->join('tblOfficeUse as d', 'd.ApplicationNo', '=', 'a.ApplicationNo')
+                    ->join('tblSlumImage as e', 'e.ApplicationNo', '=', 'a.ApplicationNo')
+
+                    ->select('a.ApplicationNo', 'a.NameOfSlumOwner', 'a.SlumNameAdd', 'a.NameOfAssembly', 'a.Ward', 'a.SlumOwnerWifeName', 'c.OfficeUseImage','a.UseOfSlum','e.SlumImage',)
+                    ->where('a.ApplicationNo', '=', $applicationNo)
+                    ->get();
+    } else if ($name !== "") {
+        $results = DB::connection('simconn1')->table('tblSlumOwnerMst1 as a')
+                    // ->join('tblRelationWithHead1 as b', 'a.ApplicationNo', '=', 'b.ApplicationNo')
+                    ->join('tblOfficeUseImage as c', 'c.ApplicationNo', '=', 'a.ApplicationNo')
+                    // ->join('tblOfficeUse as d', 'd.ApplicationNo', '=', 'a.ApplicationNo')
+                    ->join('tblSlumImage as e', 'e.ApplicationNo', '=', 'a.ApplicationNo')
+
+                    ->select('a.ApplicationNo', 'a.NameOfSlumOwner', 'a.SlumNameAdd', 'a.NameOfAssembly', 'a.Ward', 'a.SlumOwnerWifeName',  'c.OfficeUseImage', 'a.UseOfSlum','e.SlumImage',)
+                    ->where('a.NameOfSlumOwner', '=', $name)
+                    ->get();
+    } else {
+        $results = [];
+    }
+
+
+    $query_overall_remark = DB::table('sims_master_detail')
+    ->select('*')
+    ->where('hut_id', '=', $hid)
+    ->where('user_id',auth()->user()->id)
+    ->where('photopass_status','<>',0)
+    ->where('photopass_remark','<>','')
+    ->get();
+
+
+
+                        // Latest code to check name & application no//
+
+                        // if (!empty($name)) {
+                        //     $results = DB::connection('simconn1')->table('tblSlumOwnerMst1 as a')
+                        //                 ->join('tblOfficeUseImage as c', 'c.ApplicationNo', '=', 'a.ApplicationNo')
+                        //                 ->join('tblSlumImage as e', 'e.ApplicationNo', '=', 'a.ApplicationNo')
+                        //                 ->select('a.ApplicationNo', 'a.NameOfSlumOwner', 'a.SlumNameAdd', 'a.NameOfAssembly', 'a.Ward', 'c.OfficeUseImage', 'e.SlumImage','a.UseOfSlum')
+                        //                 ->where('a.NameOfSlumOwner', '=', $name)
+                        //                 ->get();
+                        // } else if (!empty($applicationNo)) {
+                        //     $results = DB::connection('simconn1')->table('tblSlumOwnerMst1 as a')
+                        //                 ->join('tblOfficeUseImage as c', 'c.ApplicationNo', '=', 'a.ApplicationNo')
+                        //                 ->join('tblSlumImage as e', 'e.ApplicationNo', '=', 'a.ApplicationNo')
+                        //                 ->select('a.ApplicationNo', 'a.NameOfSlumOwner', 'a.SlumNameAdd', 'a.NameOfAssembly', 'a.Ward', 'c.OfficeUseImage', 'e.SlumImage','a.UseOfSlum')
+                        //                 ->where('a.ApplicationNo', '=', $applicationNo)
+                        //                 ->get();
+                        // } else {
+                        //     $results = [];
+                        // }
+
+    // print_r($results);die;
+
+
+
+            $query_data_vendor = DB::table('recommendation_photopass')
+                        ->select('*')
+                        ->where('hut_id', '=', $hid)
+                        ->where('user','vendor')
+                        ->get();
+
+            $query_data_ca = DB::table('recommendation_photopass')
+                        ->select('*')
+                        ->where('hut_id', '=', $hid)
+                        ->where('user','ca')
+                        ->get();
+           // print_r($missing_images);die;
+        return view('admin::sra.photopass')->with('overall_remark' , $query_overall_remark)->with('query' , $query)->with( 'query1',$query1)->with('results',$results)->with('query_data' , $query_data)->with('hid',$hid)->with('query3' , $query3)->with('query_data_vendor',$query_data_vendor)->with('query_data_ca',$query_data_ca);
+    }
+
+
+    public function storeremark_photopass(Request $request,$hid)
+    {
+        // echo "in"; die;
+        //  print_r($hid);die;
+
+
+        // $hutId = $request->input('hid');
+        $year = $request->input('year');
+        // $id = $request->input('id');
+        $elg1 = $request->input('elg1');
+        $elg2 = $request->input('elg2');
+        $elg3 = $request->input('elg3');
+        $elg4 = $request->input('elg4');
+        $elg5 = $request->input('elg5');
+        $elg6 = $request->input('elg6');
+
+        $user = $request->input('user');
+
+        if($user==""){
+            $user = "vendor";
+        }
+
+        $remark1 = $remark2 = $remark3 = $remark4 = $remark5 = $remark6 = '';
+
+        if($user == 'ca')
+        {
+            $remark1 = $request->input('remark1_ca');
+            $remark2 = $request->input('remark2_ca');
+            $remark3 = $request->input('remark3_ca');
+            $remark4 = $request->input('remark4_ca');
+            $remark5 = $request->input('remark5_ca');
+            $remark6 = $request->input('remark6_ca');
+        }
+        elseif($user == 'vendor')
+        {
+            $remark1 = $request->input('remark1');
+            $remark2 = $request->input('remark2');
+            $remark3 = $request->input('remark3');
+            $remark4 = $request->input('remark4');
+            $remark5 = $request->input('remark5');
+            $remark6 = $request->input('remark6');
+        }
+
+        $oremark = $request->input('remark');
+        $oelg = $request->input('elg');
+
+            DB::table('recommendation_photopass')->insert([
+                'hut_id'=>$hid,
+                'year'=>$year,
+                'user_id'=>0,
+                'eligibility_application_no' => $elg1,
+                'eligibility_name' => $elg2,
+                'eligibility_address' => $elg3,
+                'eligibility_landarea' => $elg4,
+                'eligibility_ownership' => $elg5,
+                'eligibility_use' => $elg6,
+                'remark_application_no' => $remark1,
+                'remark_name' => $remark2,
+                'remark_address' => $remark3,
+                'remark_landarea' => $remark4,
+                'remark_ownership' => $remark5,
+                'remark_use' => $remark6,
+                'overall_remark' => $oremark,
+                'overall_eligibility' => $oelg,
+                'user' => $user,
+                'created_at'=>NOW(),
+
+        ]);
+        return redirect()->route('admin.sra.photopass', ['hid' => $hid])->with('message', 'Recommendation Added Successfully!');
 
     }
    

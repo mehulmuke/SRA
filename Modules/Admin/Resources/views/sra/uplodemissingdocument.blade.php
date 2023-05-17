@@ -4,9 +4,12 @@
   font-family: 'Times New Roman', Times, serif !important;
  
 }
-
-
+div label {
+    color: #495057 !important;
+    font-size: 18px !important;
+}
 </style>
+
 @extends('admin::layout')
 <head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -25,8 +28,9 @@
                                 <table class="table table-borderless table-responsive">
                                   <thead>
                                         <tr>
+                                        <th>Cluster ID</th>
                                       <th>Hut ID</th>
-                                      <th>Cluster ID</th>
+                                      
                                       <th>Scheme Name</th>
                                       <th>Owner Name</th>
                                       <th>Address</th>
@@ -40,9 +44,10 @@
                                   <tbody>
                                     <tr>
                                       @foreach($query as $data)
+                                      <td>{{$data->ClusterId}}</td>
                                         <td>{{$data->HUTSURVERYID}}</td>
                                         <?php $hid = $data->HUTSURVERYID ?>
-                                        <td>{{$data->ClusterId}}</td>
+                                        
                                         <td>{{$data->SchemeName}}</td>
                                         <td>{{$data->HUTOWNERNAME}}</td>
                                         <td>{{$data->Address}}</td>
@@ -432,6 +437,7 @@
                             }
                             imageInputId.style.display = 'block';
                             imageInputlabel.style.display = 'block';
+                            
                         } else {
 
                             if (this.id == 'Voting Card') {

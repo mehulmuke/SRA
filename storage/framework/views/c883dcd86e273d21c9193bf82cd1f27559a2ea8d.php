@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+
+
 <?php $__env->startComponent('admin::include.page.header'); ?>
     <?php $__env->slot('title', clean(trans('admin::sra.sradetailtitle'))); ?>
     <li class="nav-item">
@@ -668,12 +675,14 @@ th,td {
                 <label for="tab-1" class="tab-label" style="color:#fff !important;font-size:16px !important;">Gumasta</label>
                 <div class="tab-content">
                   <!-- start-->
+                
                   <div class="table-responsive" id="sra-table">
                                 <table class="table table-borderless table-responsive">
                                   <thead>
                                         <tr>
-                                      <th>Hut ID</th>
-                                      <th>Cluster ID</th>
+                                      <th>Cluster Id</th>
+                                      <th>Hut Id</th>
+                                    
                                       <th>Scheme Name</th>
                                       <th>Owner Name</th>
                                       <th>Address</th>
@@ -687,9 +696,10 @@ th,td {
                                   <tbody>
                                     <tr>
                                       <?php $__currentLoopData = $query; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                      <td><?php echo e($data->ClusterId); ?></td>
+
                                         <td><?php echo e($data->HUTSURVERYID); ?></td>
                                         <?php $hid = $data->HUTSURVERYID ?>
-                                        <td><?php echo e($data->ClusterId); ?></td>
                                         <td><?php echo e($data->SchemeName); ?></td>
                                         <td><?php echo e($data->HUTOWNERNAME); ?></td>
                                         <td><?php echo e($data->Address); ?></td>
@@ -902,12 +912,12 @@ th,td {
                                         <tbody>
                                             <tr>
                                                <?php if(!isset($int_data_2000)){ ?>
-                                                <td width="10%"><input type="text" class="form-control" name="License_no" value = "<?php echo e(isset($int_data_2000->License_no) ? $int_data_2000->License_no : ''); ?>" <?php echo e(isset($int_data_2000->License_no) ? 'readonly' : ''); ?> ></td>
-                                                <td width="10%"><input type="text" class="form-control" name="License_issue_date"  value = "<?php echo e(isset($int_data_2000->License_issue_date) ? $int_data_2000->License_issue_date : ''); ?>" <?php echo e(isset($int_data_2000->License_issue_date) ? 'readonly' : ''); ?> ></td>
-                                                <td width="20%"><input type="text" class="form-control" name="organisation_name"  value = "<?php echo e(isset($int_data_2000->organisation_name) ? $int_data_2000->organisation_name : ''); ?>" <?php echo e(isset($int_data_2000->organisation_name) ? 'readonly' : ''); ?> ></td>
-                                                <td width="20%"><input type="text" class="form-control" name="name"  value = "<?php echo e(isset($int_data_2000->name) ? $int_data_2000->name : ''); ?>" <?php echo e(isset($int_data_2000->name) ? 'readonly' : ''); ?> ></td>
-                                                <td width="20%"><input type="text" class="form-control" name="address"  value = "<?php echo e(isset($int_data_2000->address) ? $int_data_2000->address : ''); ?>" <?php echo e(isset($int_data_2000->address) ? 'readonly' : ''); ?> ></td>
-                                                <td width="10%"><input type="text" class="form-control" name="License_exp_date"  value = "<?php echo e(isset($int_data_2000->License_exp_date) ? $int_data_2000->License_exp_date : ''); ?>" <?php echo e(isset($int_data_2000->License_exp_date) ? 'readonly' : ''); ?> ></td>
+                                                <td width="10%"><input type="text" required class="form-control" name="License_no" value = "<?php echo e(isset($int_data_2000->License_no) ? $int_data_2000->License_no : ''); ?>" <?php echo e(isset($int_data_2000->License_no) ? 'readonly' : ''); ?> ></td>
+                                                <td width="10%"><input type="text" required class="form-control" name="License_issue_date"  value = "<?php echo e(isset($int_data_2000->License_issue_date) ? $int_data_2000->License_issue_date : ''); ?>" <?php echo e(isset($int_data_2000->License_issue_date) ? 'readonly' : ''); ?> ></td>
+                                                <td width="20%"><input type="text" required class="form-control" name="organisation_name"  value = "<?php echo e(isset($int_data_2000->organisation_name) ? $int_data_2000->organisation_name : ''); ?>" <?php echo e(isset($int_data_2000->organisation_name) ? 'readonly' : ''); ?> ></td>
+                                                <td width="20%"><input type="text" required class="form-control" name="name"  value = "<?php echo e(isset($int_data_2000->name) ? $int_data_2000->name : ''); ?>" <?php echo e(isset($int_data_2000->name) ? 'readonly' : ''); ?> ></td>
+                                                <td width="20%"><input type="text" required class="form-control" name="address"  value = "<?php echo e(isset($int_data_2000->address) ? $int_data_2000->address : ''); ?>" <?php echo e(isset($int_data_2000->address) ? 'readonly' : ''); ?> ></td>
+                                                <td width="10%"><input type="text" required class="form-control" name="License_exp_date"  value = "<?php echo e(isset($int_data_2000->License_exp_date) ? $int_data_2000->License_exp_date : ''); ?>" <?php echo e(isset($int_data_2000->License_exp_date) ? 'readonly' : ''); ?> ></td>
                                                <?php }else { ?>
                                                 <td width="10%"><?php echo e(isset($int_data_2000->License_no) ? $int_data_2000->License_no : ''); ?> </td>
                                                 <td width="10%"><?php echo e(isset($int_data_2000->License_issue_date) ? $int_data_2000->License_issue_date : ''); ?></td>
@@ -1113,12 +1123,12 @@ th,td {
                                 <td width="20%"><?php echo e(isset($data_2000->remark_address) ? $data_2000->remark_address : ''); ?></td>
                                 <td width="10%"><?php echo e(isset($data_2000->remark_validity) ? $data_2000->remark_validity : ''); ?></td>
                                  <?php }else{ ?>
-                                <td width="10%"><input type="text" class="form-control" name="remark1" value = "<?php echo e(isset($data_2000->remark_licanse_name) ? $data_2000->remark_licanse_name : ''); ?>" <?php echo e(isset($data_2000->remark_licanse_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
-                                <td width="10%"><input type="text" class="form-control" name="remark2" value = "<?php echo e(isset($data_2000->remark_licanse_issue_date) ? $data_2000->remark_licanse_issue_date : ''); ?>" <?php echo e(isset($data_2000->remark_licanse_issue_date) ? 'readonly' : ''); ?> <?= $access ?>></td>
-                                <td width="20%"><input type="text" class="form-control" name="remark3" value = "<?php echo e(isset($data_2000->remark_owner_org_name) ? $data_2000->remark_owner_org_name : ''); ?>" <?php echo e(isset($data_2000->remark_owner_org_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
-                                <td width="20%"><input type="text" class="form-control" name="remark6" value = "<?php echo e(isset($data_2000->remark_owner_name) ? $data_2000->remark_owner_name : ''); ?>" <?php echo e(isset($data_2000->remark_owner_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
-                                <td width="20%"><input type="text" class="form-control" name="remark4" value = "<?php echo e(isset($data_2000->remark_address) ? $data_2000->remark_address : ''); ?>" <?php echo e(isset($data_2000->remark_address) ? 'readonly' : ''); ?> <?= $access ?>></td>
-                                <td width="10%"><input type="text" class="form-control" name="remark5" value = "<?php echo e(isset($data_2000->remark_validity) ? $data_2000->remark_validity : ''); ?>" <?php echo e(isset($data_2000->remark_validity) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark1" value = "<?php echo e(isset($data_2000->remark_licanse_name) ? $data_2000->remark_licanse_name : ''); ?>" <?php echo e(isset($data_2000->remark_licanse_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark2" value = "<?php echo e(isset($data_2000->remark_licanse_issue_date) ? $data_2000->remark_licanse_issue_date : ''); ?>" <?php echo e(isset($data_2000->remark_licanse_issue_date) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="20%"><input type="text"  required class="form-control" name="remark3" value = "<?php echo e(isset($data_2000->remark_owner_org_name) ? $data_2000->remark_owner_org_name : ''); ?>" <?php echo e(isset($data_2000->remark_owner_org_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="20%"><input type="text"  required class="form-control" name="remark6" value = "<?php echo e(isset($data_2000->remark_owner_name) ? $data_2000->remark_owner_name : ''); ?>" <?php echo e(isset($data_2000->remark_owner_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="20%"><input type="text" required class="form-control" name="remark4" value = "<?php echo e(isset($data_2000->remark_address) ? $data_2000->remark_address : ''); ?>" <?php echo e(isset($data_2000->remark_address) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark5" value = "<?php echo e(isset($data_2000->remark_validity) ? $data_2000->remark_validity : ''); ?>" <?php echo e(isset($data_2000->remark_validity) ? 'readonly' : ''); ?> <?= $access ?>></td>
                               <?php } ?>
                               </tr>
                               <tr>
@@ -1351,9 +1361,9 @@ th,td {
                                 <td width="20%"><?php echo e(isset($data_2000_ca->remark_address) ? $data_2000_ca->remark_address : ''); ?></td>
                                 <td width="10%"><?php echo e(isset($data_2000_ca->remark_validity) ? $data_2000_ca->remark_validity : ''); ?></td>
                                  <?php }else{ ?>
-                                <td width="10%"><input type="text" class="form-control" name="remark1_ca" value = "<?php echo e(isset($data_2000_ca->remark_licanse_name) ? $data_2000_ca->remark_licanse_name : ''); ?>" <?php echo e(isset($data_2000_ca->remark_licanse_name) ? 'readonly' : ''); ?> ></td>
-                                <td width="10%"><input type="text" class="form-control" name="remark2_ca" value = "<?php echo e(isset($data_2000_ca->remark_licanse_issue_date) ? $data_2000_ca->remark_licanse_issue_date : ''); ?>" <?php echo e(isset($data_2000_ca->remark_licanse_issue_date) ? 'readonly' : ''); ?>></td>
-                                <td width="20%"><input type="text" class="form-control" name="remark3_ca" value = "<?php echo e(isset($data_2000_ca->remark_owner_org_name) ? $data_2000_ca->remark_owner_org_name : ''); ?>" <?php echo e(isset($data_2000_ca->remark_owner_org_name) ? 'readonly' : ''); ?> ></td>
+                                <td width="10%"><input type="text"  required class="form-control" name="remark1_ca" value = "<?php echo e(isset($data_2000_ca->remark_licanse_name) ? $data_2000_ca->remark_licanse_name : ''); ?>" <?php echo e(isset($data_2000_ca->remark_licanse_name) ? 'readonly' : ''); ?> ></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark2_ca" value = "<?php echo e(isset($data_2000_ca->remark_licanse_issue_date) ? $data_2000_ca->remark_licanse_issue_date : ''); ?>" <?php echo e(isset($data_2000_ca->remark_licanse_issue_date) ? 'readonly' : ''); ?>></td>
+                                <td width="20%"><input type="text" required class="form-control" name="remark3_ca" value = "<?php echo e(isset($data_2000_ca->remark_owner_org_name) ? $data_2000_ca->remark_owner_org_name : ''); ?>" <?php echo e(isset($data_2000_ca->remark_owner_org_name) ? 'readonly' : ''); ?> ></td>
                                 <td width="20%">
                                   <?php if(isset($data_2000_ca->remark_owner_name)){?>
                                     <input type="text" class="form-control" name="remark6_ca" value = "<?php echo e($data_2000_ca->remark_owner_name); ?>" >
@@ -1361,8 +1371,8 @@ th,td {
                                     <input type="text" class="form-control" name="remark6_ca" value = "" >
                                   <?php } ?>
                                 </td>
-                                <td width="20%"><input type="text" class="form-control" name="remark4_ca" value = "<?php echo e(isset($data_2000_ca->remark_address) ? $data_2000_ca->remark_address : ''); ?>" <?php echo e(isset($data_2000_ca->remark_address) ? 'readonly' : ''); ?>></td>
-                                <td width="10%"><input type="text" class="form-control" name="remark5_ca" value = "<?php echo e(isset($data_2000_ca->remark_validity) ? $data_2000_ca->remark_validity : ''); ?>" <?php echo e(isset($data_2000_ca->remark_validity) ? 'readonly' : ''); ?> ></td>
+                                <td width="20%"><input type="text" required class="form-control" name="remark4_ca" value = "<?php echo e(isset($data_2000_ca->remark_address) ? $data_2000_ca->remark_address : ''); ?>" <?php echo e(isset($data_2000_ca->remark_address) ? 'readonly' : ''); ?>></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark5_ca" value = "<?php echo e(isset($data_2000_ca->remark_validity) ? $data_2000_ca->remark_validity : ''); ?>" <?php echo e(isset($data_2000_ca->remark_validity) ? 'readonly' : ''); ?> ></td>
                               <?php } ?>
                               </tr>
                               <tr>
@@ -1896,12 +1906,12 @@ th,td {
                                         <tbody>
                                             <tr>
                                               <?php if(!isset($int_data_2000_2011)){ ?>
-                                                <td width="10%"><input type="text" class="form-control" name="License_no" value = "<?php echo e(isset($int_data_2000_2011->License_no) ? $int_data_2000_2011->License_no : ''); ?>" <?php echo e(isset($int_data_2000_2011->License_no) ? 'readonly' : ''); ?> ></td>
-                                                <td width="10%"><input type="text" class="form-control" name="License_issue_date"  value = "<?php echo e(isset($int_data_2000_2011->License_issue_date) ? $int_data_2000_2011->License_issue_date : ''); ?>" <?php echo e(isset($int_data_2000_2011->License_issue_date) ? 'readonly' : ''); ?> ></td>
-                                                <td width="20%"><input type="text" class="form-control" name="organisation_name"  value = "<?php echo e(isset($int_data_2000_2011->organisation_name) ? $int_data_2000_2011->organisation_name : ''); ?>" <?php echo e(isset($int_data_2000_2011->organisation_name) ? 'readonly' : ''); ?> ></td>
-                                                <td width="20%"><input type="text" class="form-control" name="name"  value = "<?php echo e(isset($int_data_2000_2011->name) ? $int_data_2000_2011->name : ''); ?>" <?php echo e(isset($int_data_2000_2011->name) ? 'readonly' : ''); ?> ></td>
-                                                <td width="20%"><input type="text" class="form-control" name="address"  value = "<?php echo e(isset($int_data_2000_2011->address) ? $int_data_2000_2011->address : ''); ?>" <?php echo e(isset($int_data_2000_2011->address) ? 'readonly' : ''); ?> ></td>
-                                                <td width="10%"><input type="text" class="form-control" name="License_exp_date"  value = "<?php echo e(isset($int_data_2000_2011->License_exp_date) ? $int_data_2000_2011->License_exp_date : ''); ?>" <?php echo e(isset($int_data_2000_2011->License_exp_date) ? 'readonly' : ''); ?> ></td>
+                                                <td width="10%"><input type="text" required class="form-control" name="License_no" value = "<?php echo e(isset($int_data_2000_2011->License_no) ? $int_data_2000_2011->License_no : ''); ?>" <?php echo e(isset($int_data_2000_2011->License_no) ? 'readonly' : ''); ?> ></td>
+                                                <td width="10%"><input type="text" required class="form-control" name="License_issue_date"  value = "<?php echo e(isset($int_data_2000_2011->License_issue_date) ? $int_data_2000_2011->License_issue_date : ''); ?>" <?php echo e(isset($int_data_2000_2011->License_issue_date) ? 'readonly' : ''); ?> ></td>
+                                                <td width="20%"><input type="text" required class="form-control" name="organisation_name"  value = "<?php echo e(isset($int_data_2000_2011->organisation_name) ? $int_data_2000_2011->organisation_name : ''); ?>" <?php echo e(isset($int_data_2000_2011->organisation_name) ? 'readonly' : ''); ?> ></td>
+                                                <td width="20%"><input type="text" required class="form-control" name="name"  value = "<?php echo e(isset($int_data_2000_2011->name) ? $int_data_2000_2011->name : ''); ?>" <?php echo e(isset($int_data_2000_2011->name) ? 'readonly' : ''); ?> ></td>
+                                                <td width="20%"><input type="text" required class="form-control" name="address"  value = "<?php echo e(isset($int_data_2000_2011->address) ? $int_data_2000_2011->address : ''); ?>" <?php echo e(isset($int_data_2000_2011->address) ? 'readonly' : ''); ?> ></td>
+                                                <td width="10%"><input type="text" required class="form-control" name="License_exp_date"  value = "<?php echo e(isset($int_data_2000_2011->License_exp_date) ? $int_data_2000_2011->License_exp_date : ''); ?>" <?php echo e(isset($int_data_2000_2011->License_exp_date) ? 'readonly' : ''); ?> ></td>
                                               <?php }else{ ?>
                                                 <td width="10%"><?php echo e(isset($int_data_2000_2011->License_no) ? $int_data_2000_2011->License_no : ''); ?></td>
                                                 <td width="10%"><?php echo e(isset($int_data_2000_2011->License_issue_date) ? $int_data_2000_2011->License_issue_date : ''); ?></td>
@@ -2106,12 +2116,12 @@ th,td {
                                 <td width="20%"><?php echo e(isset($data_2000_2011->remark_address) ? $data_2000_2011->remark_address : ''); ?></td>
                                 <td width="10%"><?php echo e(isset($data_2000_2011->remark_validity) ? $data_2000_2011->remark_validity : ''); ?></td>
                                  <?php }else{ ?>
-                                <td width="10%"><input type="text" class="form-control" name="remark1" value = "<?php echo e(isset($data_2000_2011->remark_licanse_name) ? $data_2000_2011->remark_licanse_name : ''); ?>" <?php echo e(isset($data_2000_2011->remark_licanse_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
-                                <td width="10%"><input type="text" class="form-control" name="remark2" value = "<?php echo e(isset($data_2000_2011->remark_licanse_issue_date) ? $data_2000_2011->remark_licanse_issue_date : ''); ?>" <?php echo e(isset($data_2000_2011->remark_licanse_issue_date) ? 'readonly' : ''); ?> <?= $access ?>></td>
-                                <td width="20%"><input type="text" class="form-control" name="remark3" value = "<?php echo e(isset($data_2000_2011->remark_owner_org_name) ? $data_2000_2011->remark_owner_org_name : ''); ?>" <?php echo e(isset($data_2000_2011->remark_owner_org_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
-                                <td width="20%"><input type="text" class="form-control" name="remark6" value = "<?php echo e(isset($data_2000_2011->remark_owner_name) ? $data_2000_2011->remark_owner_name : ''); ?>" <?php echo e(isset($data_2000_2011->remark_owner_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
-                                <td width="20%"><input type="text" class="form-control" name="remark4" value = "<?php echo e(isset($data_2000_2011->remark_address) ? $data_2000_2011->remark_address : ''); ?>" <?php echo e(isset($data_2000_2011->remark_address) ? 'readonly' : ''); ?> <?= $access ?>></td>
-                                <td width="10%"><input type="text" class="form-control" name="remark5" value = "<?php echo e(isset($data_2000_2011->remark_validity) ? $data_2000_2011->remark_validity : ''); ?>" <?php echo e(isset($data_2000_2011->remark_validity) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark1" value = "<?php echo e(isset($data_2000_2011->remark_licanse_name) ? $data_2000_2011->remark_licanse_name : ''); ?>" <?php echo e(isset($data_2000_2011->remark_licanse_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark2" value = "<?php echo e(isset($data_2000_2011->remark_licanse_issue_date) ? $data_2000_2011->remark_licanse_issue_date : ''); ?>" <?php echo e(isset($data_2000_2011->remark_licanse_issue_date) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="20%"><input type="text" required class="form-control" name="remark3" value = "<?php echo e(isset($data_2000_2011->remark_owner_org_name) ? $data_2000_2011->remark_owner_org_name : ''); ?>" <?php echo e(isset($data_2000_2011->remark_owner_org_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="20%"><input type="text" required class="form-control" name="remark6" value = "<?php echo e(isset($data_2000_2011->remark_owner_name) ? $data_2000_2011->remark_owner_name : ''); ?>" <?php echo e(isset($data_2000_2011->remark_owner_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="20%"><input type="text" required class="form-control" name="remark4" value = "<?php echo e(isset($data_2000_2011->remark_address) ? $data_2000_2011->remark_address : ''); ?>" <?php echo e(isset($data_2000_2011->remark_address) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark5" value = "<?php echo e(isset($data_2000_2011->remark_validity) ? $data_2000_2011->remark_validity : ''); ?>" <?php echo e(isset($data_2000_2011->remark_validity) ? 'readonly' : ''); ?> <?= $access ?>></td>
                               <?php } ?>
                               </tr>
                               <tr>
@@ -2342,9 +2352,9 @@ th,td {
                                 <td width="20%"><?php echo e(isset($data_2000_2011_ca->remark_address) ? $data_2000_2011_ca->remark_address : ''); ?></td>
                                 <td width="10%"><?php echo e(isset($data_2000_2011_ca->remark_validity) ? $data_2000_2011_ca->remark_validity : ''); ?></td>
                                  <?php }else{ ?>
-                                <td width="10%"><input type="text" class="form-control" name="remark1_ca" value = "<?php echo e(isset($data_2000_2011_ca->remark_licanse_name) ? $data_2000_2011_ca->remark_licanse_name : ''); ?>" <?php echo e(isset($data_2000_2011_ca->remark_licanse_name) ? 'readonly' : ''); ?>></td>
-                                <td width="10%"><input type="text" class="form-control" name="remark2_ca" value = "<?php echo e(isset($data_2000_2011_ca->remark_licanse_issue_date) ? $data_2000_2011_ca->remark_licanse_issue_date : ''); ?>" <?php echo e(isset($data_2000_2011_ca->remark_licanse_issue_date) ? 'readonly' : ''); ?> ></td>
-                                <td width="20%"><input type="text" class="form-control" name="remark3_ca" value = "<?php echo e(isset($data_2000_2011_ca->remark_owner_org_name) ? $data_2000_2011_ca->remark_owner_org_name : ''); ?>" <?php echo e(isset($data_2000_2011_ca->remark_owner_org_name) ? 'readonly' : ''); ?>></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark1_ca" value = "<?php echo e(isset($data_2000_2011_ca->remark_licanse_name) ? $data_2000_2011_ca->remark_licanse_name : ''); ?>" <?php echo e(isset($data_2000_2011_ca->remark_licanse_name) ? 'readonly' : ''); ?>></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark2_ca" value = "<?php echo e(isset($data_2000_2011_ca->remark_licanse_issue_date) ? $data_2000_2011_ca->remark_licanse_issue_date : ''); ?>" <?php echo e(isset($data_2000_2011_ca->remark_licanse_issue_date) ? 'readonly' : ''); ?> ></td>
+                                <td width="20%"><input type="text" required class="form-control" name="remark3_ca" value = "<?php echo e(isset($data_2000_2011_ca->remark_owner_org_name) ? $data_2000_2011_ca->remark_owner_org_name : ''); ?>" <?php echo e(isset($data_2000_2011_ca->remark_owner_org_name) ? 'readonly' : ''); ?>></td>
                                  <td width="20%">
                                   <?php if(isset($data_2000_2011_ca->remark_owner_name)){?>
                                     <input type="text" class="form-control" name="remark6_ca" value = "<?php echo e($data_2000_2011_ca->remark_owner_name); ?>" >
@@ -2352,8 +2362,8 @@ th,td {
                                     <input type="text" class="form-control" name="remark6_ca" value = "" >
                                   <?php } ?>
                                 </td>
-                                <td width="20%"><input type="text" class="form-control" name="remark4_ca" value = "<?php echo e(isset($data_2000_2011_ca->remark_address) ? $data_2000_2011_ca->remark_address : ''); ?>" <?php echo e(isset($data_2000_2011_ca->remark_address) ? 'readonly' : ''); ?> ></td>
-                                <td width="10%"><input type="text" class="form-control" name="remark5_ca" value = "<?php echo e(isset($data_2000_2011_ca->remark_validity) ? $data_2000_2011_ca->remark_validity : ''); ?>" <?php echo e(isset($data_2000_2011_ca->remark_validity) ? 'readonly' : ''); ?> ></td>
+                                <td width="20%"><input type="text" required class="form-control" name="remark4_ca" value = "<?php echo e(isset($data_2000_2011_ca->remark_address) ? $data_2000_2011_ca->remark_address : ''); ?>" <?php echo e(isset($data_2000_2011_ca->remark_address) ? 'readonly' : ''); ?> ></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark5_ca" value = "<?php echo e(isset($data_2000_2011_ca->remark_validity) ? $data_2000_2011_ca->remark_validity : ''); ?>" <?php echo e(isset($data_2000_2011_ca->remark_validity) ? 'readonly' : ''); ?> ></td>
                               <?php } ?>
                               </tr>
                               <tr>
@@ -2382,7 +2392,7 @@ th,td {
                                       }
                                         ?>
                                        <?php }else { ?>
-                                      <select name="elg" class="form-control" style="padding: 2px 1rem !important;">
+                                      <select name="elg" required class="form-control" style="padding: 2px 1rem !important;">
                                         <option value="0">-- Select Option --</option>
                                         <option value="1" <?php echo e(isset($data_2000_2011_ca->overall_eligibility) && ($data_2000_2011_ca->overall_eligibility == 1) ? 'selected' : ''); ?> >Verified</option>
                                         <option value="2" <?php echo e(isset($data_2000_2011_ca->overall_eligibility) &&($data_2000_2011_ca->overall_eligibility == 2) ? 'selected' : ''); ?>>Not Matched</option>
@@ -2395,7 +2405,7 @@ th,td {
                                         <?php echo e(isset($data_2000_2011_ca->overall_remark) ? $data_2000_2011_ca->overall_remark : 'Not Available'); ?>
 
                                       <?php }else { ?>
-                                        <textarea class="form-control" style="height: auto !important;" name="remark" cols="100" <?php echo e(isset($data_2000_2011_ca->overall_remark) ? 'readonly' : ''); ?>><?php echo e(isset($data_2000_2011_ca->overall_remark) ? $data_2000_2011_ca->overall_remark : $remark1); ?></textarea>                                    <?php } ?>
+                                        <textarea required class="form-control" style="height: auto !important;" name="remark" cols="100" <?php echo e(isset($data_2000_2011_ca->overall_remark) ? 'readonly' : ''); ?>><?php echo e(isset($data_2000_2011_ca->overall_remark) ? $data_2000_2011_ca->overall_remark : $remark1); ?></textarea>                                    <?php } ?>
                                     </td>
 
                               </tr>
@@ -2899,12 +2909,12 @@ th,td {
                                         <tbody>
                                             <tr>
                                               <?php if(!isset($int_data_current)){ ?>
-                                                <td width="10%"><input type="text" class="form-control" name="License_no" value = "<?php echo e(isset($int_data_current->License_no) ? $int_data_current->License_no : ''); ?>" <?php echo e(isset($int_data_current->License_no) ? 'readonly' : ''); ?> ></td>
-                                                <td width="10%"><input type="text" class="form-control" name="License_issue_date"  value = "<?php echo e(isset($int_data_current->License_issue_date) ? $int_data_current->License_issue_date : ''); ?>" <?php echo e(isset($int_data_current->License_issue_date) ? 'readonly' : ''); ?> ></td>
-                                                <td width="20%"><input type="text" class="form-control" name="organisation_name"  value = "<?php echo e(isset($int_data_current->organisation_name) ? $int_data_current->organisation_name : ''); ?>" <?php echo e(isset($int_data_current->organisation_name) ? 'readonly' : ''); ?> ></td>
-                                                <td width="20%"><input type="text" class="form-control" name="name"  value = "<?php echo e(isset($int_data_current->name) ? $int_data_current->name : ''); ?>" <?php echo e(isset($int_data_current->name) ? 'readonly' : ''); ?> ></td>
-                                                <td width="20%"><input type="text" class="form-control" name="address"  value = "<?php echo e(isset($int_data_current->address) ? $int_data_current->address : ''); ?>" <?php echo e(isset($int_data_current->address) ? 'readonly' : ''); ?> ></td>
-                                                <td width="10%"><input type="text" class="form-control" name="License_exp_date"  value = "<?php echo e(isset($int_data_current->License_exp_date) ? $int_data_current->License_exp_date : ''); ?>" <?php echo e(isset($int_data_current->License_exp_date) ? 'readonly' : ''); ?> ></td>
+                                                <td width="10%"><input type="text" required class="form-control" name="License_no" value = "<?php echo e(isset($int_data_current->License_no) ? $int_data_current->License_no : ''); ?>" <?php echo e(isset($int_data_current->License_no) ? 'readonly' : ''); ?> ></td>
+                                                <td width="10%"><input type="text" required class="form-control" name="License_issue_date"  value = "<?php echo e(isset($int_data_current->License_issue_date) ? $int_data_current->License_issue_date : ''); ?>" <?php echo e(isset($int_data_current->License_issue_date) ? 'readonly' : ''); ?> ></td>
+                                                <td width="20%"><input type="text" required class="form-control" name="organisation_name"  value = "<?php echo e(isset($int_data_current->organisation_name) ? $int_data_current->organisation_name : ''); ?>" <?php echo e(isset($int_data_current->organisation_name) ? 'readonly' : ''); ?> ></td>
+                                                <td width="20%"><input type="text" required class="form-control" name="name"  value = "<?php echo e(isset($int_data_current->name) ? $int_data_current->name : ''); ?>" <?php echo e(isset($int_data_current->name) ? 'readonly' : ''); ?> ></td>
+                                                <td width="20%"><input type="text" required class="form-control" name="address"  value = "<?php echo e(isset($int_data_current->address) ? $int_data_current->address : ''); ?>" <?php echo e(isset($int_data_current->address) ? 'readonly' : ''); ?> ></td>
+                                                <td width="10%"><input type="text" required class="form-control" name="License_exp_date"  value = "<?php echo e(isset($int_data_current->License_exp_date) ? $int_data_current->License_exp_date : ''); ?>" <?php echo e(isset($int_data_current->License_exp_date) ? 'readonly' : ''); ?> ></td>
                                                 <?php }else { ?>
                                                 <td width="10%"><?php echo e(isset($int_data_current->License_no) ? $int_data_current->License_no : ''); ?> </td>
                                                 <td width="10%"><?php echo e(isset($int_data_current->License_issue_date) ? $int_data_current->License_issue_date : ''); ?></td>
@@ -3109,12 +3119,12 @@ th,td {
                                 <td width="20%"><?php echo e(isset($data_current->remark_address) ? $data_current->remark_address : ''); ?></td>
                                 <td width="10%"><?php echo e(isset($data_current->remark_validity) ? $data_current->remark_validity : ''); ?></td>
                                  <?php }else{ ?>
-                                <td width="10%"><input type="text" class="form-control" name="remark1" value = "<?php echo e(isset($data_current->remark_licanse_name) ? $data_current->remark_licanse_name : ''); ?>" <?php echo e(isset($data_current->remark_licanse_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
-                                <td width="10%"><input type="text" class="form-control" name="remark2" value = "<?php echo e(isset($data_current->remark_licanse_issue_date) ? $data_current->remark_licanse_issue_date : ''); ?>" <?php echo e(isset($data_current->remark_licanse_issue_date) ? 'readonly' : ''); ?> <?= $access ?>></td>
-                                <td width="20%"><input type="text" class="form-control" name="remark3" value = "<?php echo e(isset($data_current->remark_owner_org_name) ? $data_current->remark_owner_org_name : ''); ?>" <?php echo e(isset($data_current->remark_owner_org_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
-                                <td width="20%"><input type="text" class="form-control" name="remark6" value = "<?php echo e(isset($data_current->remark_owner_name) ? $data_current->remark_owner_name : ''); ?>" <?php echo e(isset($data_current->remark_owner_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
-                                <td width="20%"><input type="text" class="form-control" name="remark4" value = "<?php echo e(isset($data_current->remark_address) ? $data_current->remark_address : ''); ?>" <?php echo e(isset($data_current->remark_address) ? 'readonly' : ''); ?> <?= $access ?>></td>
-                                <td width="10%"><input type="text" class="form-control" name="remark5" value = "<?php echo e(isset($data_current->remark_validity) ? $data_current->remark_validity : ''); ?>" <?php echo e(isset($data_current->remark_validity) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark1" value = "<?php echo e(isset($data_current->remark_licanse_name) ? $data_current->remark_licanse_name : ''); ?>" <?php echo e(isset($data_current->remark_licanse_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark2" value = "<?php echo e(isset($data_current->remark_licanse_issue_date) ? $data_current->remark_licanse_issue_date : ''); ?>" <?php echo e(isset($data_current->remark_licanse_issue_date) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="20%"><input type="text" required class="form-control" name="remark3" value = "<?php echo e(isset($data_current->remark_owner_org_name) ? $data_current->remark_owner_org_name : ''); ?>" <?php echo e(isset($data_current->remark_owner_org_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="20%"><input type="text" required class="form-control" name="remark6" value = "<?php echo e(isset($data_current->remark_owner_name) ? $data_current->remark_owner_name : ''); ?>" <?php echo e(isset($data_current->remark_owner_name) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="20%"><input type="text" required class="form-control" name="remark4" value = "<?php echo e(isset($data_current->remark_address) ? $data_current->remark_address : ''); ?>" <?php echo e(isset($data_current->remark_address) ? 'readonly' : ''); ?> <?= $access ?>></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark5" value = "<?php echo e(isset($data_current->remark_validity) ? $data_current->remark_validity : ''); ?>" <?php echo e(isset($data_current->remark_validity) ? 'readonly' : ''); ?> <?= $access ?>></td>
                               <?php } ?>
                               </tr>
                               <tr>
@@ -3164,7 +3174,7 @@ th,td {
                                         <?php echo e(isset($data_current->overall_remark) ? $data_current->overall_remark : 'Not Available'); ?>
 
                                       <?php }else { ?>
-                                        <textarea class="form-control" style="height: auto !important;" class="form-control" name="remark" cols="100" <?php echo e(isset($data_current->overall_remark) ? 'readonly' : ''); ?>><?php echo e(isset($data_current->overall_remark) ? $data_current->overall_remark :  $remark2); ?></textarea>                                    <?php } ?>
+                                        <textarea required class="form-control" style="height: auto !important;" class="form-control" name="remark" cols="100" <?php echo e(isset($data_current->overall_remark) ? 'readonly' : ''); ?>><?php echo e(isset($data_current->overall_remark) ? $data_current->overall_remark :  $remark2); ?></textarea>                                    <?php } ?>
                                     </td>
 
                               </tr>
@@ -3354,9 +3364,9 @@ th,td {
                                 <td width="20%"><?php echo e(isset($data_current_ca->remark_address) ? $data_current_ca->remark_address : ''); ?></td>
                                 <td width="10%"><?php echo e(isset($data_current_ca->remark_validity) ? $data_current_ca->remark_validity : ''); ?></td>
                                  <?php }else{ ?>
-                                <td width="10%"><input type="text" class="form-control" name="remark1_ca" value = "<?php echo e(isset($data_current_ca->remark_licanse_name) ? $data_current_ca->remark_licanse_name : ''); ?>" <?php echo e(isset($data_current_ca->remark_licanse_name) ? 'readonly' : ''); ?> ></td>
-                                <td width="10%"><input type="text" class="form-control" name="remark2_ca" value = "<?php echo e(isset($data_current_ca->remark_licanse_issue_date) ? $data_current_ca->remark_licanse_issue_date : ''); ?>" <?php echo e(isset($data_current_ca->remark_licanse_issue_date) ? 'readonly' : ''); ?> ></td>
-                                <td width="20%"><input type="text" class="form-control" name="remark3_ca" value = "<?php echo e(isset($data_current_ca->remark_owner_org_name) ? $data_current_ca->remark_owner_org_name : ''); ?>" <?php echo e(isset($data_current_ca->remark_owner_org_name) ? 'readonly' : ''); ?> ></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark1_ca" value = "<?php echo e(isset($data_current_ca->remark_licanse_name) ? $data_current_ca->remark_licanse_name : ''); ?>" <?php echo e(isset($data_current_ca->remark_licanse_name) ? 'readonly' : ''); ?> ></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark2_ca" value = "<?php echo e(isset($data_current_ca->remark_licanse_issue_date) ? $data_current_ca->remark_licanse_issue_date : ''); ?>" <?php echo e(isset($data_current_ca->remark_licanse_issue_date) ? 'readonly' : ''); ?> ></td>
+                                <td width="20%"><input type="text" required class="form-control" name="remark3_ca" value = "<?php echo e(isset($data_current_ca->remark_owner_org_name) ? $data_current_ca->remark_owner_org_name : ''); ?>" <?php echo e(isset($data_current_ca->remark_owner_org_name) ? 'readonly' : ''); ?> ></td>
                                
                                  <td width="20%">
                                   <?php if(isset($data_current_ca->remark_owner_name)){?>
@@ -3365,8 +3375,8 @@ th,td {
                                     <input type="text" class="form-control" name="remark6_ca" value = "" >
                                   <?php } ?>
                                 </td>
-                                <td width="20%"><input type="text" class="form-control" name="remark4_ca" value = "<?php echo e(isset($data_current_ca->remark_address) ? $data_current_ca->remark_address : ''); ?>" <?php echo e(isset($data_current_ca->remark_address) ? 'readonly' : ''); ?>></td>
-                                <td width="10%"><input type="text" class="form-control" name="remark5_ca" value = "<?php echo e(isset($data_current_ca->remark_validity) ? $data_current_ca->remark_validity : ''); ?>" <?php echo e(isset($data_current_ca->remark_validity) ? 'readonly' : ''); ?>></td>
+                                <td width="20%"><input type="text" required class="form-control" name="remark4_ca" value = "<?php echo e(isset($data_current_ca->remark_address) ? $data_current_ca->remark_address : ''); ?>" <?php echo e(isset($data_current_ca->remark_address) ? 'readonly' : ''); ?>></td>
+                                <td width="10%"><input type="text" required class="form-control" name="remark5_ca" value = "<?php echo e(isset($data_current_ca->remark_validity) ? $data_current_ca->remark_validity : ''); ?>" <?php echo e(isset($data_current_ca->remark_validity) ? 'readonly' : ''); ?>></td>
                               <?php } ?>
                               </tr>
                               <tr>
@@ -3394,7 +3404,7 @@ th,td {
                                       }
                                         ?>
                                        <?php }else { ?>
-                                      <select name="elg" class="form-control" style="padding: 2px 1rem !important;">
+                                      <select name="elg" required class="form-control" style="padding: 2px 1rem !important;">
                                         <option value="0">-- Select Option --</option>
                                         <option value="1" <?php echo e(isset($data_current_ca->overall_eligibility) && ($data_current_ca->overall_eligibility == 1) ? 'selected' : ''); ?> >Verified</option>
                                         <option value="2" <?php echo e(isset($data_current_ca->overall_eligibility) &&($data_current_ca->overall_eligibility == 2) ? 'selected' : ''); ?>>Not Matched</option>
@@ -3408,7 +3418,7 @@ th,td {
                                         <?php echo e(isset($data_current_ca->overall_remark) ? $data_current_ca->overall_remark : 'Not Available'); ?>
 
                                       <?php }else { ?>
-                                        <textarea class="form-control" style="height: auto !important;" name="remark" cols="100" <?php echo e(isset($data_current_ca->overall_remark) ? 'readonly' : ''); ?>><?php echo e(isset($data_current_ca->overall_remark) ? $data_current_ca->overall_remark :  $remark2); ?></textarea>
+                                        <textarea required class="form-control" style="height: auto !important;" name="remark" cols="100" <?php echo e(isset($data_current_ca->overall_remark) ? 'readonly' : ''); ?>><?php echo e(isset($data_current_ca->overall_remark) ? $data_current_ca->overall_remark :  $remark2); ?></textarea>
                                     <?php } ?>
                                     </td>
 
@@ -3451,8 +3461,7 @@ th,td {
                               <div class="card-body">
                                 <div class="table-responsive" id="sra-table">
                                   <table class="table table-borderless table-responsive">
-                                    <form method="post" enctype="multipart/form-data" action="<?php echo e(route('admin.sra.store_overall_remark')); ?>">
-                                    <?php echo csrf_field(); ?>
+                                  <form method="post" enctype="multipart/form-data" action="<?php echo e(route('admin.sra.store_overall_remark')); ?>" name="myForm" id="myForm" onsubmit="return validateForm();">                                    <?php echo csrf_field(); ?>
                                     <input type="hidden" name="hutid" value="<?php echo $hid;?>">
                                     <input type="hidden" name="user" value="<?php echo e(auth()->user()->id); ?>">
                                     <input type="hidden" name="type" value="gumasta">
@@ -3460,7 +3469,7 @@ th,td {
                                       <td>
                                         <div class="form-group">
                                         <label>Status:</label>
-                                        <select name="elg" class="form-control">
+                                        <select name="elg" class="form-control" required>
                                               <?php if(count($overall_remark) == 0){ ?>
                                              <option value="0">-- Select Option --</option>
                                              <option value="1" >Verified</option>
@@ -3498,9 +3507,9 @@ th,td {
                                         <div class="form-group">
                                         <label>Remark:</label>
                                         <?php if(count($overall_remark) == 0){ ?>
-                                          <textarea name="remark" cols="100" class="form-control"> </textarea>
+                                          <textarea name="remark" cols="100" class="form-control" required> </textarea>
                                         <?php }else{ ?>
-                                           <textarea name="remark" cols="100" class="form-control"><?php echo e($overall_remark[0]->gumasta_remark); ?></textarea>
+                                           <textarea name="remark" cols="100" class="form-control" required><?php echo e($overall_remark[0]->gumasta_remark); ?></textarea>
                                         <?php } ?>
                                       </div>
                                       </td>
@@ -3535,7 +3544,7 @@ th,td {
               </div>
               <div class="tab">
                 <input type="radio" name="css-tabs" id="tab-4" class="tab-switch">
-                <a href="#" class="tab-label" style="color:#495057!important;font-size:16px !important;">Photo Pass Details</a>
+                <a href="index.php/sra/photopass/<?php echo e($hid); ?>"class="tab-label" style="color:#495057!important;font-size:16px !important;">Photo Pass Details</a>
                 <div class="tab-content">Photo Pass Details</div>
               </div>
               <div class="tab">
@@ -3545,7 +3554,7 @@ th,td {
               </div>
               <div class="tab">
                 <input type="radio" name="css-tabs" id="tab-7" class="tab-switch">
-                <a href="index.php/sra/adhar/<?php echo e($hid); ?>" class="tab-label" style="color:#495057!important;font-size:16px !important;">Aadhar Card</a>
+                <a href="index.php/sra/adhar/<?php echo e($hid); ?>" class="tab-label" style="color:#495057!important;font-size:16px !important;">Aadhaar Card</a>
                 <div class="tab-content">Registration Agreement Details</div>
               </div>
               <div class="tab">
@@ -3571,6 +3580,19 @@ th,td {
     background: white !important;
   }
 </style>
+<script>
+   function validateForm() {
+   
+    var remarkValue = document.forms["myForm"]["remark"].value;
+    if (remarkValue.trim() === "") {
+      alert("Please enter an overall remark.");
+      return false;
+    }
+
+   
+
+   }
+  </script>
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -3587,6 +3609,8 @@ $(document).ready(function() {
     }
   })
 
+
+
   /*openAllPanels = function(aId) {
     console.log("setAllPanelOpen");
     $(aId + ' .panel-collapse:not(".in")').collapse('show');
@@ -3598,4 +3622,20 @@ $(document).ready(function() {
      
 });
 </script>
+
+<script>
+    $(document).ready(function() {
+        // Hide success message after 5 seconds
+        setTimeout(function() {
+            $('.alert-success').fadeOut('slow');
+        }, 5000);
+    });
+</script>
+
+
+
+
+
+
+
 <?php echo $__env->make('admin::layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/sraservices/Modules/Admin/Resources/views/sra/gumasta.blade.php ENDPATH**/ ?>

@@ -260,5 +260,15 @@ Route::post('sra/storemanualdata_adhar', [
     'uses' => 'SraController@storemanualdata_adhar',
     'middleware' => 'can:admin.sra.storemanualdata_adhar',
 ]);
+Route::get('sra/photopass/{hid}', [
+    'as' => 'admin.sra.photopass',
+    'uses' => 'SraController@photopass',
+    'middleware' => 'can:admin.sra.photopass',
+]);
+Route::post('sra/storeremark_photopass/{hid}', [
+    'as' => 'admin.sra.storeremark_photopass',
+    'uses' => 'SraController@storeremark_photopass',
+    'middleware' => 'can:admin.sra.storeremark_photopass',
+]);
 // Route::post('/manualdata/{id}/{hut_id}', [SraController::class, 'storeManualData'])->name('admin.sra.storemanualdata')->middleware('can:admin.sra.storeManualData');
 

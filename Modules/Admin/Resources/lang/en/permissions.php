@@ -43,6 +43,8 @@ return [
          'storeremark_adhar' => 'Store Adhar Remark',
          'work_status' => 'Work Status',
          'storemanualdata_adhar' => 'Store Adhar Manual Data',
+         'photopass' => 'Photopass',
+
 
     ],
     'missingelectiondocuments' => [

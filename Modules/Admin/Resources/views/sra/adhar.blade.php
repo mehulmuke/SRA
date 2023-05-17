@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
 @extends('admin::layout')
 
 
@@ -174,6 +179,7 @@
 th ,td {
       border-bottom:none !important;
       height: 30px !important;
+      font-size: 18px !important;
     }
 
 
@@ -295,14 +301,7 @@ th ,td {
 .accordion-option .toggle-accordion.active:before {
   content: "Collapse All";
 }
-th,td {
-        border-bottom: none !important;
-        height: 30px !important;
-        font-size:16px !important;
-    
- 
 
-    }
     h4{
       font-size:18px !important;
       font-weight: bold !important;
@@ -556,7 +555,7 @@ th,td {
               </div>
               <div class="tab">
                 <input type="radio" name="css-tabs" id="tab-4" class="tab-switch">
-                <a href="#" class="tab-label" style="color:#495057!important;font-size:16px !important;">Photo Pass Details</a>
+                <a href="index.php/sra/photopass/{{ $hid }}" class="tab-label" style="color:#495057!important;font-size:16px !important;">Photo Pass Details</a>
                 <div class="tab-content">Photo Pass Details</div>
               </div>
               <div class="tab">
@@ -566,15 +565,17 @@ th,td {
               </div>
               <div class="tab">
                 <input type="radio" name="css-tabs" id="tab-5" checked class="tab-switch">
-                 <label for="tab-1" class="tab-label" style="color:#fff !important;font-size:16px !important;">Aadhar Card</label>
+                 <label for="tab-1" class="tab-label" style="color:#fff !important;font-size:16px !important;">Aadhaar Card</label>
                 <div class="tab-content">
                   <!-- start-->
+
+                 
                   <div class="table-responsive" id="sra-table">
                                 <table class="table table-borderless table-responsive">
                                   <thead>
                                       <tr>
+                                    <th>Cluster ID</th>
                                       <th>Hut ID</th>
-                                      <th>Cluster ID</th>
                                       <th>Scheme Name</th>
                                       <th>Owner Name</th>
                                       <th>Address</th>
@@ -589,9 +590,10 @@ th,td {
                                   <tbody>
                                     <tr>
                                       @foreach($query as $data)
+                                      <td>{{$data->ClusterId}}</td>
                                         <td>{{$data->HUTSURVERYID}}</td>
                                         <?php $hid = $data->HUTSURVERYID ?>
-                                        <td>{{$data->ClusterId}}</td>
+                                        
                                         <td>{{$data->SchemeName}}</td>
                                         <td>{{$data->HUTOWNERNAME}}</td>
                                         <td>{{$data->Address}}</td>
@@ -984,33 +986,76 @@ th,td {
                                      
                                    <?php } else { ?>
                                 <td width="10%">
-                                 
-                                <select name="elg1" class="form-control" style="padding: 2px 1rem !important;">
-                                    <option value="0">-- Select Option --</option>
-                                    <option value="1" {{ isset($highestPercentageOfUID) && $highestPercentageOfUID < 100 ? 'selected' : '' }}>Manual</option>
-                                    <option value="2" {{ isset($highestPercentageOfUID) && $highestPercentageOfUID == 100 ? 'selected' : '' }}>Auto</option>
-                                </select>
+                                 <?php
+                                 if(isset($highestPercentageOfUID) && $highestPercentageOfUID == 100)
+                                 {
+                                  ?>
+                                    <input type="text" class="form-control" name="elg1" value="Auto" readyonly>
+                                  <?php
+                                 }else{
+                                  ?>
+                                    <select name="elg1" class="form-control" style="padding: 2px 1rem !important;">
+                                        <option value="0">-- Select Option --</option>
+                                        <option value="1" {{ isset($highestPercentageOfUID) && $highestPercentageOfUID < 100 ? 'selected' : '' }}>Manual</option>
+                                        <option value="2" {{ isset($highestPercentageOfUID) && $highestPercentageOfUID == 100 ? 'selected' : '' }}>Auto</option>
+                                    </select>
+                                  <?php
+                                 }
+                                ?>
                                 </td>
                                 <td width="10%">
+                                <?php
+                                 if(isset($highestPercentageOfName1) && $highestPercentageOfName1 == 100)
+                                 {
+                                  ?>
+                                    <input type="text" class="form-control" name="elg2" value="Auto" readyonly>
+                                  <?php
+                                 }else{
+                                  ?> 
                                 <select name="elg2" class="form-control" style="padding: 2px 1rem !important;">
                                     <option value="0">-- Select Option --</option>
                                     <option value="1" {{ isset($highestPercentageOfName1) && $highestPercentageOfName1 < 100 ? 'selected' : '' }}>Manual</option>
                                     <option value="2" {{ isset($highestPercentageOfName1) && $highestPercentageOfName1 == 100 ? 'selected' : '' }}>Auto</option>
                                 </select>
+                                <?php
+                                 }
+                                ?>
                                 </td>
                                 <td width="10%">
-                                <select name="elg3" class="form-control" style="padding: 2px 1rem !important;">
-                                    <option value="0">-- Select Option --</option>
-                                    <option value="1" {{ isset($highestPercentageOfdate) && $highestPercentageOfdate < 100 ? 'selected' : '' }}>Manual</option>
-                                    <option value="2" {{ isset($highestPercentageOfdate) && $highestPercentageOfdate == 100 ? 'selected' : '' }}>Auto</option>
-                                </select>
+                                <?php
+                                 if(isset($highestPercentageOfdate) && $highestPercentageOfdate == 100)
+                                 {
+                                  ?>
+                                    <input type="text" class="form-control" name="elg3" value="Auto" readyonly>
+                                  <?php
+                                 }else{
+                                  ?> 
+                                  <select name="elg3" class="form-control" style="padding: 2px 1rem !important;">
+                                      <option value="0">-- Select Option --</option>
+                                      <option value="1" {{ isset($highestPercentageOfdate) && $highestPercentageOfdate < 100 ? 'selected' : '' }}>Manual</option>
+                                      <option value="2" {{ isset($highestPercentageOfdate) && $highestPercentageOfdate == 100 ? 'selected' : '' }}>Auto</option>
+                                  </select>
+                                <?php
+                                 }
+                                ?>
                                 </td>
                                 <td width="10%">
-                                <select name="elg4" class="form-control" style="padding: 2px 1rem !important;">
-                                    <option value="0">-- Select Option --</option>
-                                    <option value="1" {{ isset($highestPercentageOfAddress1) && $highestPercentageOfAddress1 < 100 ? 'selected' : '' }}>Manual</option>
-                                    <option value="2"  {{ isset($highestPercentageOfAddress1) && $highestPercentageOfAddress1 == 100 ? 'selected' : '' }}>Auto</option>
-                                </select>
+                                <?php
+                                 if(isset($highestPercentageOfAddress1) && $highestPercentageOfAddress1 == 100)
+                                 {
+                                  ?>
+                                    <input type="text" class="form-control" name="elg4" value="Auto" readyonly>
+                                  <?php
+                                 }else{
+                                  ?> 
+                                  <select name="elg4" class="form-control" style="padding: 2px 1rem !important;">
+                                      <option value="0">-- Select Option --</option>
+                                      <option value="1" {{ isset($highestPercentageOfAddress1) && $highestPercentageOfAddress1 < 100 ? 'selected' : '' }}>Manual</option>
+                                      <option value="2"  {{ isset($highestPercentageOfAddress1) && $highestPercentageOfAddress1 == 100 ? 'selected' : '' }}>Auto</option>
+                                 </select>
+                                 <?php
+                                 }
+                                ?>
                                 </td>
                               
                                  <?php } ?>
@@ -1044,11 +1089,17 @@ th,td {
                             <td ><b>Section Remark :</b></td>
                             <?php
 
-                            if(count($documents)>0){
+                            /**if(count($documents)>0){
                                 $remark = "Aadhar Document with UID".$documents[0]->uid." and address " .$documents[0]->address;
                             }else{
                                 $remark = "";
+                            }*/
+                            if(isset($highestPercentageAddress1) && isset($highestPercentageUID ) ){
+                              $remark = "Aadhar Document with UID".$highestPercentageUID." and address " .$highestPercentageAddress1;
+                            }else{
+                                $remark = "";
                             }
+
                         ?>
                             
                           </tr>
@@ -1194,34 +1245,78 @@ th,td {
                                    
                                    <?php  } else { ?>
                                 <td width="10%">
+                                <?php
+                                 if(isset($highestPercentageOfUID) && $highestPercentageOfUID == 100)
+                                 {
+                                  ?>
+                                    <input type="text" class="form-control" name="elg1" value="Auto" readyonly>
+                                  <?php
+                                 }else{
+                                  ?> 
                                 <select name="elg1" class="form-control" style="padding: 2px 1rem !important;">
                                     <option value="0">-- Select Option --</option>
                                     <option value="1" {{ isset($highestPercentageOfUID) && $highestPercentageOfUID < 100 ? 'selected' : '' }}>Manual</option>
                                     <option value="2" {{ isset($highestPercentageOfUID) && $highestPercentageOfUID == 100 ? 'selected' : '' }}>Auto</option>
                                 </select>
+                                <?php
+                                 }
+                                ?>
                                 </td>
                                 <td width="10%">
+                                  <?php
+                                if(isset($highestPercentageOfName1) && $highestPercentageOfName1 == 100)
+                                 {
+                                  ?>
+                                    <input type="text" class="form-control" name="elg2" value="Auto" readyonly>
+                                  <?php
+                                 }else{
+                                  ?> 
                                 <select name="elg2" class="form-control" style="padding: 2px 1rem !important;">
                                     <option value="0">-- Select Option --</option>
                                     <option value="1" {{ isset($highestPercentageOfName1) && $highestPercentageOfName1 < 100 ? 'selected' : '' }}>Manual</option>
                                     <option value="2" {{ isset($highestPercentageOfName1) && $highestPercentageOfName1 == 100 ? 'selected' : '' }}>Auto</option>
                                 </select>
+                                <?php
+                                 }
+                                ?>
                                 </td>
                                 <td width="10%">
-                                <select name="elg3" class="form-control" style="padding: 2px 1rem !important;">
-                                    <option value="0">-- Select Option --</option>
-                                    <option value="1" {{ isset($highestPercentageOfdate) && $highestPercentageOfdate < 100 ? 'selected' : '' }}>Manual</option>
-                                    <option value="2" {{ isset($highestPercentageOfdatehighestPercentageOfdate) && $highestPercentageOfdate == 100 ? 'selected' : '' }}>Auto</option>
-                                </select>
+                                <?php
+                                if(isset($highestPercentageOfdate) && $highestPercentageOfdate == 100)
+                                 {
+                                  ?>
+                                    <input type="text" class="form-control" name="elg3" value="Auto" readyonly>
+                                  <?php
+                                 }else{
+                                  ?> 
+                                    <select name="elg3" class="form-control" style="padding: 2px 1rem !important;">
+                                        <option value="0">-- Select Option --</option>
+                                        <option value="1" {{ isset($highestPercentageOfdate) && $highestPercentageOfdate < 100 ? 'selected' : '' }}>Manual</option>
+                                        <option value="2" {{ isset($highestPercentageOfdatehighestPercentageOfdate) && $highestPercentageOfdate == 100 ? 'selected' : '' }}>Auto</option>
+                                    </select>
+                                  <?php
+                                 }
+                                ?>
                                 </td>
                                 <td width="10%">
-                                <select name="elg4" class="form-control" style="padding: 2px 1rem !important;">
-                                    <option value="0">-- Select Option --</option>
-                                    <option value="1" {{ isset($highestPercentageOfAddress1) && $highestPercentageOfAddress1 < 100 ? 'selected' : '' }}>Manual</option>
-                                    <option value="2"  {{ isset($highestPercentageOfAddress1) && $highestPercentageOfAddress1 == 100 ? 'selected' : '' }}>Auto</option>
-                                </select>
+                                  <?php
+                                if(isset($highestPercentageOfAddress1) && $highestPercentageOfAddress1 == 100)
+                                 {
+                                  ?>
+                                    <input type="text" class="form-control" name="elg4" value="Auto" readyonly>
+                                  <?php
+                                 }else{
+                                  ?> 
+                                  <select name="elg4" class="form-control" style="padding: 2px 1rem !important;">
+                                      <option value="0">-- Select Option --</option>
+                                      <option value="1" {{ isset($highestPercentageOfAddress1) && $highestPercentageOfAddress1 < 100 ? 'selected' : '' }}>Manual</option>
+                                      <option value="2"  {{ isset($highestPercentageOfAddress1) && $highestPercentageOfAddress1 == 100 ? 'selected' : '' }}>Auto</option>
+                                  </select>
+                                <?php
+                                 }
+                                ?>
                                 </td>
-                             
+                                  
                               <?php } ?>
                               </tr>
                               <tr>
@@ -1330,7 +1425,7 @@ th,td {
                               <div class="card-body">
                                 <div class="table-responsive" id="sra-table">
                                   <table class="table table-borderless table-responsive">
-                                    <form method="post" enctype="multipart/form-data" action="{{ route('admin.sra.store_overall_remark') }}">
+                                    <form method="post" enctype="multipart/form-data" action="{{ route('admin.sra.store_overall_remark') }}" name="myForm" id="myForm" onsubmit="return validateForm();">
                                     @csrf
                                     <input type="hidden" name="hutid" value="<?php echo $hid;?>">
                                     <input type="hidden" name="user" value="{{auth()->user()->id}}">
@@ -1339,7 +1434,7 @@ th,td {
                                       <td>
                                         <div class="form-group">
                                         <label>Status:</label>
-                                        <select name="elg" class="form-control">
+                                        <select name="elg" class="form-control" required>
                                           <?php if(count($overall_remark) == 0){ ?>
                                              <option value="0">-- Select Option --</option>
                                              <option value="1" >Verified</option>
@@ -1382,7 +1477,7 @@ th,td {
                                         <div class="form-group">
                                         <label>Remark:</label>
                                         <?php if(count($overall_remark) == 0){ ?>
-                                          <textarea name="remark" cols="100" class="form-control"> </textarea>
+                                          <textarea name="remark" cols="100" class="form-control" required> </textarea>
                                         <?php }else{ ?>
                                            <textarea name="remark" cols="100" class="form-control">{{$overall_remark[0]->adhar_remark}}</textarea>
                                         <?php } ?>
@@ -1565,3 +1660,32 @@ $(document).ready(function() {
 
 
 </script>
+<!-- waring msg script -->
+<script>
+   function validateForm() {
+   
+    var remarkValue = document.forms["myForm"]["remark"].value;
+    if (remarkValue.trim() === "") {
+      alert("Please enter an overall remark.");
+      return false;
+    }
+
+   
+
+   }
+  </script>
+
+<script>
+    $(document).ready(function() {
+        // Hide success message after 5 seconds
+        setTimeout(function() {
+            $('.alert-success').fadeOut('slow');
+        }, 5000);
+    });
+</script>
+
+
+
+
+
+

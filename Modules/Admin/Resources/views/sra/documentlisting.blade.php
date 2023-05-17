@@ -225,8 +225,9 @@ th,
                                 <table class="table table-borderless table-responsive">
                                   <thead>
                                       <tr>
-                                      <th>Hut ID</th>
-                                      <th>Cluster ID</th>
+                                        <th>Cluster Id</th>
+                                      <th>Hut Id</th>
+                                      
                                       <th>Scheme Name</th>
                                       <th>Owner Name</th>
                                       <th>Address</th>
@@ -240,9 +241,10 @@ th,
                                   <tbody>
                                     <tr>
                                       @foreach($query as $data)
+                                      <td>{{$data->ClusterId}}</td>
                                         <td>{{$data->HUTSURVERYID}}</td>
                                         <?php $hid = $data->HUTSURVERYID ?>
-                                        <td>{{$data->ClusterId}}</td>
+                                        
                                         <td>{{$data->SchemeName}}</td>                                        
                                         <td>{{$data->HUTOWNERNAME}}</td>
                                         <td>{{$data->Address}}</td>
@@ -263,7 +265,7 @@ th,
                         <div class="card-body">
                           <!-- start-->
                           <div class="d-flex align-items-center">
-                            <h2 class="card-title"><i class="fas fa-list"></i> &nbsp;SIMS images</h2>
+                            <h2 class="card-title"><i class="fas fa-list"></i> &nbsp;SIMS Images</h2>
                           </div>
                           <br><br>
                           <div class="row">
@@ -1021,12 +1023,12 @@ th,
                 <input type="radio" name="css-tabs" id="tab-6"  class="tab-switch">
                 <a href="index.php/sra/agreement/{{$hid}}" class="tab-label" style="color:#495057!important;font-size:16px !important;">Registration Agreement Details</a>
                 <div class="tab-content">
-                  aaa
+                  
                 </div>
               </div>
               <div class="tab">
                 <input type="radio" name="css-tabs" id="tab-7" class="tab-switch">
-                <a href="index.php/sra/adhar/{{$hid}}" class="tab-label" style="color:#495057!important;font-size:16px !important;">Adhar Card</a>
+                <a href="index.php/sra/adhar/{{$hid}}" class="tab-label" style="color:#495057!important;font-size:16px !important;">Aadhaar Card</a>
                 <div class="tab-content">Registration Agreement Details</div>
               </div>
               <div class="tab">

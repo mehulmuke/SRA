@@ -1,4 +1,16 @@
+<style>
+    th ,td {
+      border-bottom:none !important;
+      height: 30px !important;
+      font-size:18px !important;
+    }
+    .tablinks btn btn-primary ml-auto btn-actions btn-create
+    {
+        font-size:16px !important;
+        font-weight:bold!important;
 
+    }
+    </style>
 @extends('admin::layout')
 
 @section('content')
@@ -74,10 +86,10 @@
                                  <tr>
                                      <!-- <th data-sort>{{ clean(trans('admin::sra.table.id')) }}</th> -->
                                      <th data-sort>#</th>
-
+                                     <th>{{ clean(trans('admin::sra.table.clusterid')) }}</th>
                                      <th>{{ clean(trans('admin::sra.table.hutsurveyid')) }}</th>
                                      <th>{{ clean(trans('admin::sra.table.schemename')) }}</th>
-                                     <th>{{ clean(trans('admin::sra.table.clusterid')) }}</th>
+                                     {{-- <th>{{ clean(trans('admin::sra.table.clusterid')) }}</th> --}}
                                      <th>Owner Name</th>
                                      <th>{{ clean(trans('admin::sra.table.address')) }}</th>
                                      <th>{{ clean(trans('admin::sra.table.propertytype')) }}</th>
@@ -95,9 +107,11 @@
                                  foreach ($query as $key => $value) {
                                      # code...
                                      echo '<tr><td>' . $i . '</td>';
+                                        echo '<td>' . $value->ClusterId . '</td>';
+
                                      echo "<td><a href='http://sra-uat.apniamc.in/index.php/en/sra/documentlisting/" . $value->HUTSURVERYID . "'>" . $value->HUTSURVERYID . '</a></td>';
                                      echo '<td>' . $value->SchemeName . '</td>';
-                                     echo '<td>' . $value->ClusterId . '</td>';
+                                    //  echo '<td>' . $value->ClusterId . '</td>';
                                      echo '<td>' . $value->HUTOWNERNAME . '</td>';
                                      echo '<td>' . $value->Address . '</td>';
                                      echo '<td>' . $value->PropertyType . '</td>';

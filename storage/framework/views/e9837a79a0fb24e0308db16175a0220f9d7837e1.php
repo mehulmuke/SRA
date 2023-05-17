@@ -1,3 +1,10 @@
+<style>
+th ,td {
+      border-bottom:none !important;
+      height: 30px !important;
+      font-size:18px !important;
+    }
+</style>
 
 
 

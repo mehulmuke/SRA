@@ -67,6 +67,19 @@ return [
             'prefix_indexes' => true,
 
         ],
+
+        'simconn1' => [
+            'driver' => 'sqlsrv',
+            'host' => '192.168.0.2',
+            'port' => '1433',
+            'database' => 'MAIN_DATABASE',
+            'username' => 'sa',
+            'password' => 'visual',
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+
+        ],
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),

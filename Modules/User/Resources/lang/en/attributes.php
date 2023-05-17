@@ -9,6 +9,7 @@ return [
         'first_name' => 'First Name',
         'last_name' => 'Last Name',
         'email' => 'Email',
+        'username' => 'Username',
         'profile_image' => 'Profile Image',
         'password' => 'Password',
         'password_confirmation' => 'Confirm Password',
@@ -21,7 +22,7 @@ return [
         'file_folder' => 'Assign Folder',
         'file_size_placeholder' => 'Maximum file size per each file uploaded.',
         'sub_folder_automatically_assign_when_you_select_the_main_folder' => 'sub-folder automatically assign when you select the main folder',
-        
+        'username' => 'Username',
     ],
 
     'roles' => [

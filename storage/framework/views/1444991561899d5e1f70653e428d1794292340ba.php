@@ -147,4 +147,4 @@
     </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('user::admin.auth.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/sraservices/Modules/User/Resources/views/admin/auth/login.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('user::admin.auth.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/sra_annexure/Modules/User/Resources/views/admin/auth/login.blade.php ENDPATH**/ ?>
