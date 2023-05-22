@@ -15,6 +15,10 @@ use Modules\User\Http\Requests\PasswordResetRequest;
 use Modules\User\Http\Requests\ResetCompleteRequest;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
+use Illuminate\Http\Request;
+use App\Mail\sendEmail;
+use Log;
+use Exception;
 
 abstract class BaseAuthController extends Controller
 {
@@ -56,6 +60,14 @@ abstract class BaseAuthController extends Controller
      */
     abstract public function getLoginView();
 
+    
+    /**
+     * Show login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    abstract public function getLoginOtpView();
+
     /**
      * Show reset password form.
      *
@@ -90,6 +102,7 @@ abstract class BaseAuthController extends Controller
         $request->merge(clean($request->all()));
         try {
             $loggedIn = $this->auth->login([
+                // 'email' => $request->email,
                 'username' => $request->email,
                 'password' => $request->password,
             ], (bool) $request->get('remember_me', false));
@@ -117,6 +130,105 @@ abstract class BaseAuthController extends Controller
         } catch (ThrottlingException $e) {
             return back()->withInput()
                 ->withError(trans('user::messages.users.account_is_blocked', ['delay' => intl_number($e->getDelay())]));
+        }
+    }
+
+    /**
+     * Login with otp.
+     *
+     * @param \Modules\User\Http\Requests\LoginRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postOtpLogin(Request $request)
+    {
+        try {
+
+            if($request->op == 'verify'){
+                $user = User::where([['email','=',$request->email],['otp','=',$request->otp]])->first();
+                if($user){
+                    $loggedIn = auth()->login($user, true);
+                    User::where('email','=',$request->email)->update(['otp' => 0]);
+                    //$accessToken = auth()->user()->createToken('authToken')->accessToken;
+    
+                    if (! $loggedIn) {
+                        return back()->withInput()
+                            ->withError(trans('user::messages.users.invalid_credentials'));
+                    }
+    
+                    if($loggedIn->hasAccess('admin.files.manager'))
+                    {
+                        return redirect()->route('admin.loginotp.post', ['op' => 'verify'])->with('message', trans('user::messages.users.check_email_for_otp'));
+                    }else{
+                        $redirect=route('admin.dashboard.index');
+                    }
+                    return redirect()->intended($redirect);
+                }
+                else{
+                    return back()->withInput()
+                        ->withError(trans('user::messages.users.wrong_otp'));
+                }
+            }else{
+
+                /*$request->validate(
+                    [
+                        'email' => 'required|email',
+                        'otp' => 'required'
+                    ]
+                );*/
+                $otp = rand(1000,9999);
+                Log::info("otp = ".$otp);
+                $user = User::where('email','=',$request->email)->update(['otp' => $otp]);
+                if($user){
+                    $mail_details = [
+                        'subject' => 'Testing Application OTP',
+                        'body' => 'Your OTP is : '. $otp,
+                        'email' => $request->email
+                    ];
+                    //Mail::to($request->email)->send(new sendEmail($mail_details));
+                    return redirect()->route('admin.loginotp.post', ['op' => 'verify'])->with('message', trans('user::messages.users.check_email_for_otp'));
+                }else{
+                    return back()->withInput()->withError(trans('user::messages.users.no_user_found'));
+                }
+
+            }
+            
+        }catch(\Exception $e){
+            return back()->withInput()
+                ->withError(trans('user::messages.users.something_wrong'));
+        }
+    }
+
+    /**
+     * Verify otp.
+     *
+     * @param \Modules\User\Http\Requests\LoginRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function loginOtpVerify(Request $request){
+    
+        $user = User::where([['email','=',$request->email],['otp','=',$request->otp]])->first();
+        //$user = User::where('email', $request->email)->where('otp', $request->otp)->first();
+        if($user){
+            $loggedIn = auth()->login($user, true);
+            User::where('email','=',$request->email)->update(['otp' => 0]);
+            //$accessToken = auth()->user()->createToken('authToken')->accessToken;
+
+            if (! $loggedIn) {
+                return back()->withInput()
+                    ->withError(trans('user::messages.users.invalid_credentials'));
+            }
+
+            if($loggedIn->hasAccess('admin.files.manager'))
+            {
+                return redirect()->route('admin.loginotp.post', ['op' => 'verify'])->with('message', trans('user::messages.users.check_email_for_otp'));
+            }else{
+                $redirect=route('admin.dashboard.index');
+            }
+            return redirect()->intended($redirect);
+        }
+        else{
+            return back()->withInput()
+                ->withError(trans('user::messages.users.wrong_otp'));
         }
     }
 

@@ -21,4 +21,8 @@ return [
     'password_confirmation' => 'Confirm Password',
     'cancel' => 'Cancel',
     'username'=>'Username',
+    'otp' => 'Login with OTP',
+    'sign_in_otp' => 'Send OTP',
+    'verify_otp' => 'Verify OTP',
+    'resend_otp' => 'Resend OTP',
 ];

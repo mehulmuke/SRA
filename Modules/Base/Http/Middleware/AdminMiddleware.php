@@ -11,7 +11,7 @@ class AdminMiddleware
      *
      * @var array
      */
-    protected $except = ['admin.login.*','admin.register.*','admin.reset.*','admin.files.fileshare','admin.files.unlock','admin.files.download'];
+    protected $except = ['admin.login.*','admin.loginotp.*','admin.register.*','admin.reset.*','admin.files.fileshare','admin.files.unlock','admin.files.download'];
 
     /**
      * Handle an incoming request.

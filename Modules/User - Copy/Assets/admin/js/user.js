@@ -1,2 +1,0 @@
-$(".permission-all > .btn-action-all").on("click",(function(t){var n=t.currentTarget.getAttribute("data-action");$(".permission-".concat(n)).prop("checked",!0)})),$(".permission-group-all > .btn-action-all").on("click",(function(t){var n=t.currentTarget.getAttribute("data-action");$(t.currentTarget).closest(".permission-group").find(".permission-".concat(n)).prop("checked",!0)}));
-//# sourceMappingURL=user.js.map

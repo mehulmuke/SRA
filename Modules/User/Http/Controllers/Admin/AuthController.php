@@ -37,6 +37,16 @@ class AuthController extends BaseAuthController
     {
         return view('user::admin.auth.login');
     }
+
+    /**
+     * Show login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getLoginOtpView()
+    {
+        return view('user::admin.auth.loginotp');
+    }
     
     /**
      * Show registrations form.

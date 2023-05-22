@@ -13,6 +13,9 @@ return [
         'password_has_been_reset' => 'Password has been reset. You can now login with your new password.',
         'reset_password_email_sent' => 'Reset password email sent.',
         'invalid_credentials' => 'Invalid username or password.',
+        'check_email_for_otp' => 'OTP Sent successfully on your mail.',
+        'something_wrong' => 'Something went wrong.',
+        'wrong_otp' => 'You enter wrong OTP',
     ],
     'email' => [
         'reset_password' => 'Reset your account password.',

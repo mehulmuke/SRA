@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('login', 'AuthController@getLoginView')->name('admin.login');
 Route::post('login', 'AuthController@postLogin')->name('admin.login.post');
 
+Route::get('login_otp', 'AuthController@getLoginOtpView')->name('admin.loginotp');
+Route::post('login_otp', 'AuthController@postOtpLogin')->name('admin.loginotp.post');
+//Route::post('login_otp', 'AuthController@loginOtpVerify')->name('admin.loginotpverify.complete.post');
+
 Route::get('logout', 'AuthController@getLogout')->name('admin.logout');
 
 

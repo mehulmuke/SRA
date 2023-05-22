@@ -23,6 +23,7 @@ return [
         'file_size_placeholder' => 'Maximum file size per each file uploaded.',
         'sub_folder_automatically_assign_when_you_select_the_main_folder' => 'sub-folder automatically assign when you select the main folder',
         'username' => 'Username',
+        'otp' => "Enter your OTP"
     ],
 
     'roles' => [

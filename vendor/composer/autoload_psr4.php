@@ -74,7 +74,7 @@ return array(
     'Nikhiltester\\Stylist\\' => array($vendorDir . '/nikhiltester/stylist/src/Stylist'),
     'MyCLabs\\Enum\\' => array($vendorDir . '/myclabs/php-enum/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
-    'Modules\\User\\' => array($baseDir . '/Modules/User - Copy', $baseDir . '/Modules/User'),
+    'Modules\\User\\' => array($baseDir . '/Modules/User'),
     'Modules\\Translation\\' => array($baseDir . '/Modules/Translation'),
     'Modules\\Setting\\' => array($baseDir . '/Modules/Setting'),
     'Modules\\Media\\' => array($baseDir . '/Modules/Media'),
