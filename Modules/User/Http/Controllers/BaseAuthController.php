@@ -184,8 +184,8 @@ abstract class BaseAuthController extends Controller
                         'body' => 'Your OTP is : '. $otp,
                         'email' => $request->email
                     ];
-                    //Mail::to($request->email)->send(new sendEmail($mail_details));
-                    return redirect()->route('admin.loginotp.post', ['op' => 'verify'])->with('message', trans('user::messages.users.check_email_for_otp'));
+                    Mail::to($request->email)->send(new sendEmail($mail_details));
+                    return redirect()->route('admin.loginotp.post', ['op' => 'verify','email' => $request->email])->with('message', trans('user::messages.users.check_email_for_otp'));
                 }else{
                     return back()->withInput()->withError(trans('user::messages.users.no_user_found'));
                 }

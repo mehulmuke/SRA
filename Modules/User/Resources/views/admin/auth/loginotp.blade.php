@@ -70,7 +70,6 @@
             <img src="/images/SRA-LOGO.jpg" alt="Logo">
         </div>
         <h3 class="text-center">Auto-Annexure - II</h3>
-        {{ request()->get('email') }}
         <h3 class="text-center">{{ clean(trans('user::auth.sign_in')) }}</h3>
         <div class="login-form">
                 <form method="POST" action="{{ route('admin.loginotp.post') }}">
@@ -80,7 +79,7 @@
                     <!-- <label for="email">{{ clean(trans('user::auth.email')) }} <span class="required-label">*</span></label> -->
                     <label for="email">{{ clean(trans('user::auth.email')) }} <span class="required-label">*</span></label>
                     
-                    <input type="text" name="email" value="{{ old('email') }}" class="form-control" id="email" placeholder="{{ clean(trans('user::attributes.users.email')) }}" autofocus>
+                    <input type="text" name="email" value="{{ request()->get('email') }}" class="form-control" id="email" placeholder="{{ clean(trans('user::attributes.users.email')) }}" autofocus>
                     @if($errors->has('email'))
                         <span class="help-block">{{ clean($errors->first('email')) }}</span>
                     @endif
@@ -137,7 +136,7 @@
             @if(request()->get('op') == 'verify')
             <form method="POST" action="{{ route('admin.loginotp.post') }}">
                 {{ csrf_field() }}
-                <input type="hidden" name="email" value="{{ old('email') }}" class="form-control" id="email">
+                <input type="hidden" name="email" value="{{ request()->get('email') }}" class="form-control" id="email">
                 <div class="form-group form-action-d-flex mb-3">
                     <button type="submit" class="btn btn-primary col-md-5 float-right mt-3 mt-sm-0 fw-bold" data-loading>{{ clean(trans('user::auth.resend_otp')) }}</button>
                 </div>
