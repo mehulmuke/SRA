@@ -25,4 +25,5 @@ return [
     'sign_in_otp' => 'Send OTP',
     'verify_otp' => 'Verify OTP',
     'resend_otp' => 'Resend OTP',
+    'home' => 'Slum Rehabilitation Authority, Mumbai',
 ];

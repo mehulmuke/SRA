@@ -60,6 +60,12 @@ abstract class BaseAuthController extends Controller
      */
     abstract public function getLoginView();
 
+    /**
+     * Show login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    abstract public function getFrontView();
     
     /**
      * Show login form.

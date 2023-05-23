@@ -3,23 +3,6 @@
 
 @section('title', clean(trans('user::auth.sign_in_otp')))
 
-<head>
-  <!-- Favicons -->
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Dosis:300,400,500,,600,700,700i|Lato:300,300i,400,400i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="/assets/css/style.css" rel="stylesheet">
-</head>
 <header id="header">
     <div class="row"  style="padding:5px;background-color: #6610f2;margin-top: -19px;margin-bottom:10px;">
         <div class="col-md-12" style="text-align: right;">
@@ -32,7 +15,7 @@
     </div>
     <div class="container d-flex align-items-center justify-content-between">
     <div class="col-lg-1 col-4 text-left" >
-      <a href="index.html" class="logo"><img src="/assets/img/logo_image.png" alt="" class="img-fluid" style="max-width:90%;"></a>
+      <a href="{{ route('admin.front') }}" class="logo"><img src="/assets/img/logo_image.png" alt="" class="img-fluid" style="max-width:90%;"></a>
     </div>
     <div class="col-lg-9 col-12 text-left" style="border-left: 2px solid #a5a5a5;padding-left:10px;">
         {{-- <h2 style="color:#d70e2d"> Auto Annexure-II</h2> --}}

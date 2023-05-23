@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
+Route::get('front', 'AuthController@getFrontView')->name('admin.front');
+
 Route::get('login', 'AuthController@getLoginView')->name('admin.login');
 Route::post('login', 'AuthController@postLogin')->name('admin.login.post');
 

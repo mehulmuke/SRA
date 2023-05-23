@@ -11,7 +11,7 @@ class AdminMiddleware
      *
      * @var array
      */
-    protected $except = ['admin.login.*','admin.loginotp.*','admin.register.*','admin.reset.*','admin.files.fileshare','admin.files.unlock','admin.files.download'];
+    protected $except = ['admin.login.*','admin.loginotp.*','admin.front.*','admin.register.*','admin.reset.*','admin.files.fileshare','admin.files.unlock','admin.files.download'];
 
     /**
      * Handle an incoming request.
@@ -30,7 +30,7 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect()->guest(route('admin.login'));
+        return redirect()->guest(route('admin.front'));
     }
 
     /**

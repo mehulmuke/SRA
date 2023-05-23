@@ -14,9 +14,9 @@ use Illuminate\Http\Request;
 */
 
 Route::any('request_otp', 'Api\OtpController@requestOtp');
-//Route::post('verify_otp', 'Api\OtpController@verifyOtp');
+Route::post('verify_otp', 'Api\OtpController@verifyOtp');
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
